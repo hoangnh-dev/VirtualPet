@@ -2,9 +2,9 @@
 
 [<img src="hardware/images/ak-foundation-logo.png" width="240"/>](https://github.com/the-ak-foundation)
 
-This kit would not have been possible without the help of [EPCB](https://epcb.vn/pages/frontpage)
+This kit would not have been possible without the help of [EPCB](https://epcb.vn/pages/frontpage).
 
-AK Embedded Base Kit, utilizing STM32L151 chip, is an evaluation kit for advanced embedded software learners.
+AK Embedded Base Kit, utilizing STM32L151 MCU, is an evaluation kit for advanced embedded software learners.
 
 ## Features
 
