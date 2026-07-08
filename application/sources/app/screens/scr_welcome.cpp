@@ -37,14 +37,12 @@ void view_scr_welcome() {
 	view_render.clear();
 	view_render.drawBitmap(	0, \
 		0, \
-		bitmap_dolphin, \
+		bitmap_egg, \
 		119, \
 		62, \
 		WHITE);
 
-	view_render.setTextSize(1);
-	view_render.setTextColor(WHITE);
-	view_render.setCursor(76, 12);
+	
 	welcome_print_text_partial(welcome_text_line_1, welcome_text_index);
 	view_render.setCursor(84, 25);
 	if (welcome_text_index > WELCOME_TEXT_LINE_1_LEN) {
