@@ -48,4 +48,9 @@ extern view_dynamic_t dyn_view_splash;
 extern view_screen_t scr_splash;
 extern void scr_splash_handle(ak_msg_t* msg);
 
+// scr_home
+extern view_dynamic_t dyn_view_home;
+extern view_screen_t scr_home;
+extern void scr_home_handle(ak_msg_t* msg);
+
 #endif //__SCREENS_H__

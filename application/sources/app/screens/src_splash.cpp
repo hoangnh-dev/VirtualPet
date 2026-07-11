@@ -21,7 +21,7 @@ void view_scr_splash() {
     view_render.clear();
     view_render.drawBitmap(	0, \
 		0, \
-		bitmap_egg, \
+		bitmap_egg_splash, \
 		119, \
 		62, \
 		WHITE);
@@ -32,8 +32,12 @@ void scr_splash_handle(ak_msg_t *msg) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
-		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
+		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_HOME, AC_DISPLAY_STARTUP_INTERVAL, TIMER_ONE_SHOT);
 	} break;
+	case AC_DISPLAY_SHOW_HOME:{
+		APP_DBG_SIG("AC_DISPLAY_SHOW_HOME\n");
+		SCREEN_TRAN(scr_home_handle, &scr_home);
+	}break;
 
 	default:
 		break;

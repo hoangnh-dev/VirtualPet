@@ -1,0 +1,6 @@
+#ifndef SCR_HOME_H
+#define SCR_HOME_H
+
+#include "screens.h"
+
+#endif // SCR_HOME_H
