@@ -1,4 +1,4 @@
-#include "src_home.h"
+#include "scr_home.h"
 
 static void view_scr_home();
 
@@ -41,7 +41,11 @@ void scr_home_handle(ak_msg_t *msg) {
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
 	} break;
-
+		 
+	case AC_DISPLAY_BUTTON_UP_PRESSED:
+	case AC_DISPLAY_BUTTON_DOWN_PRESSED:{
+		SCREEN_TRAN(scr_setting_handle, &scr_setting);
+	}break;
 	default:
 		break;
 	}

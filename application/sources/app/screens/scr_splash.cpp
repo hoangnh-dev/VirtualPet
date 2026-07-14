@@ -1,4 +1,4 @@
-#include "src_splash.h"
+#include "scr_splash.h"
 
 static void view_scr_splash();
 

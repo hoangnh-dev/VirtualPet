@@ -70,8 +70,8 @@ void scr_welcome_handle(ak_msg_t *msg) {
 		}
 	} break;
 
-	case AC_DISPLAY_BUTON_MODE_PRESSED: {
-		APP_DBG_SIG("AC_DISPLAY_BUTON_MODE_PRESSED\n");
+	case AC_DISPLAY_BUTTON_MODE_PRESSED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_PRESSED\n");
 		timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_WELCOME_TEXT_ANIM_TICK);
 		SCREEN_TRAN(scr_idle_handle, &scr_idle);
 	} break;
@@ -82,9 +82,9 @@ void scr_welcome_handle(ak_msg_t *msg) {
 		SCREEN_TRAN(scr_idle_handle, &scr_idle);
 	} break;
 
-	case AC_DISPLAY_BUTON_UP_PRESSED:
-	case AC_DISPLAY_BUTON_DOWN_PRESSED: {
-		APP_DBG_SIG("AC_DISPLAY_BUTON_%s_PRESSED\n", msg->sig == AC_DISPLAY_BUTON_UP_PRESSED ? "UP" : "DOWN");
+	case AC_DISPLAY_BUTTON_UP_PRESSED:
+	case AC_DISPLAY_BUTTON_DOWN_PRESSED: {
+		APP_DBG_SIG("AC_DISPLAY_BUTTON_%s_PRESSED\n", msg->sig == AC_DISPLAY_BUTTON_UP_PRESSED ? "UP" : "DOWN");
 		timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_WELCOME_TEXT_ANIM_TICK);
 		SCREEN_TRAN(scr_qrcode_handle, &scr_qrcode);
 	} break;
