@@ -11,4 +11,4 @@ SOURCES_CPP += sources/app/screens/scr_startup.cpp
 SOURCES_CPP += sources/app/screens/scr_welcome.cpp
 SOURCES_CPP += sources/app/screens/scr_splash.cpp
 SOURCES_CPP += sources/app/screens/scr_home.cpp
-SOURCES_CPP += sources/app/screens/scr_setting.cpp
+SOURCES_CPP += sources/app/screens/scr_menu.cpp

@@ -44,7 +44,7 @@ void scr_home_handle(ak_msg_t *msg) {
 		 
 	case AC_DISPLAY_BUTTON_UP_PRESSED:
 	case AC_DISPLAY_BUTTON_DOWN_PRESSED:{
-		SCREEN_TRAN(scr_setting_handle, &scr_setting);
+		SCREEN_TRAN(scr_menu_handle, &scr_menu);
 	}break;
 	default:
 		break;

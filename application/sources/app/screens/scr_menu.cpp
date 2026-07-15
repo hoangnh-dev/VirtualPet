@@ -1,16 +1,16 @@
-#include "scr_setting.h"
+#include "scr_menu.h"
 
-static void view_scr_setting();
+static void view_scr_menu();
 
-view_dynamic_t dyn_view_setting = {
+view_dynamic_t dyn_view_menu = {
 	{
 		.item_type = ITEM_TYPE_DYNAMIC,
 	},
-	view_scr_setting
+	view_scr_menu
 };
 
-view_screen_t scr_setting = {
-	&dyn_view_setting,
+view_screen_t scr_menu = {
+	&dyn_view_menu,
 	ITEM_NULL,
 	ITEM_NULL,
 
@@ -18,7 +18,7 @@ view_screen_t scr_setting = {
 };
 
 
-void view_scr_setting() {
+void view_scr_menu() {
     view_render.clear();
 	view_render.drawBitmap(	58, \
 		0, \
@@ -37,7 +37,7 @@ void view_scr_setting() {
 	view_render.print("EATING");
 }
 
-void scr_setting_handle(ak_msg_t *msg) {
+void scr_menu_handle(ak_msg_t *msg) {
 	switch (msg->sig) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");

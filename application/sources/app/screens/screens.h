@@ -53,9 +53,9 @@ extern view_dynamic_t dyn_view_home;
 extern view_screen_t scr_home;
 extern void scr_home_handle(ak_msg_t* msg);
 
-// scr_setting
-extern view_dynamic_t dyn_view_setting;
-extern view_screen_t scr_setting;
-extern void scr_setting_handle(ak_msg_t* msg);
+// scr_menu
+extern view_dynamic_t dyn_view_menu;
+extern view_screen_t scr_menu;
+extern void scr_menu_handle(ak_msg_t* msg);
 
 #endif //__SCREENS_H__
