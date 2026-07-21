@@ -1,5 +1,5 @@
 #include "scr_splash.h"
-
+#include "pet.h"
 static void view_scr_splash();
 
 view_dynamic_t dyn_view_splash = {
@@ -32,6 +32,7 @@ void scr_splash_handle(ak_msg_t *msg) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
+		pet_setup();
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_HOME, AC_DISPLAY_STARTUP_INTERVAL, TIMER_ONE_SHOT);
 	} break;
 	case AC_DISPLAY_SHOW_HOME:{
