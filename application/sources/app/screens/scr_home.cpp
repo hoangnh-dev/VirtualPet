@@ -3,8 +3,6 @@
 static void view_scr_home();
 static void egg_display();
 
-
-
 view_dynamic_t dyn_view_home = {
 	{
 		.item_type = ITEM_TYPE_DYNAMIC,
@@ -32,7 +30,7 @@ void view_scr_home() {
     view_render.print("100%");
 }
 void egg_display(){
-	view_render.fillRect(Pet_X, Egg_MAX_Y, Pet_W, Egg_Max_H ,BLACK);
+	view_render.fillRect(Egg_MAX_X, Egg_H, Egg_MAX_W, Egg_H ,BLACK);
 
 	view_render.drawBitmap(	pet.x, \
 		pet.y, \
@@ -48,6 +46,7 @@ void scr_home_handle(ak_msg_t *msg) {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_EGG, AC_DISPLAY_EGG_INTERVAL, TIMER_PERIODIC);
+		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_PET_TIME_TICK, AC_DISPLAY_PET_TIME_TICK_INTERVAL, TIMER_PERIODIC);
 		// timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
 	} break;
 		 
@@ -58,6 +57,12 @@ void scr_home_handle(ak_msg_t *msg) {
 	case AC_DISPLAY_SHOW_EGG:{
 		pet_update();
 		egg_display();
+		if(egg_state == EGG_STATE_HATCH){
+			timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_EGG);
+		}
+	} break;
+	case AC_DISPLAY_PET_TIME_TICK:{
+		pet_time();
 	} break;
 
 	default:
