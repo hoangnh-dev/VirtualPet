@@ -37,7 +37,7 @@ void view_scr_welcome() {
 	view_render.clear();
 	view_render.drawBitmap(	0, \
 		0, \
-		bitmap_egg, \
+		bitmap_egg_1, \
 		119, \
 		62, \
 		WHITE);

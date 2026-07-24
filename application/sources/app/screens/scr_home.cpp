@@ -57,9 +57,6 @@ void scr_home_handle(ak_msg_t *msg) {
 	case AC_DISPLAY_SHOW_EGG:{
 		pet_update();
 		egg_display();
-		if(egg_state == EGG_STATE_HATCH){
-			timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_EGG);
-		}
 	} break;
 	case AC_DISPLAY_PET_TIME_TICK:{
 		pet_time();
