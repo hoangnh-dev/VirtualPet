@@ -9,8 +9,17 @@
 #define Egg_MAX_X      (40)
 #define Egg_W          (36)
 #define Egg_MAX_W      (48)
-#define Egg_H          (54)
-#define Egg_Y          (15)
+#define Egg_MAX_H      (39)
+#define Egg_H          (33)
+#define Egg_Y          (20)
+#define Egg_MAX_Y      (26)
+
+#define Child_X        (46)
+#define Child_W        (30)
+#define Child_MAX_H    (27)
+#define Child_H        (24)
+#define Child_Y        (28)
+#define Child_MAX_Y    (31)
 
 typedef enum {
     PET_ACTION_NONE,

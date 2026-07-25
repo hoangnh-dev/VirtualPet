@@ -9,7 +9,7 @@ void pet_setup(){
     pet.x = Egg_X;
     pet.y = Egg_Y;
     pet.w = Egg_W;
-    pet.h = Egg_H;
+    pet.h = Egg_MAX_H;
     pet.bitmap = bitmap_egg_1;
     pet.animation_check = 0;
     pet.action = PET_ACTION_NONE; 
@@ -18,15 +18,23 @@ void pet_update_bitmap(){
     switch (pet.type) {
         case PET_TYPE_EGG:
             if(pet.animation_check){
+                pet.y = Egg_Y;
+                pet.h = Egg_MAX_H;
                 pet.bitmap = bitmap_egg_1;
             }else {
+                pet.y = Egg_MAX_Y;
+                pet.h = Egg_H;
                 pet.bitmap = bitmap_egg_2;
             }
         break;
         default:
             if(pet.animation_check){
+                pet.y = Child_Y;
+                pet.h = Child_MAX_H;
                 pet.bitmap = bitmap_child_1;
             }else {
+                pet.y = Child_MAX_Y;
+                pet.h = Child_H;
                 pet.bitmap = bitmap_child_2;
             }
         break;
@@ -43,8 +51,10 @@ void pet_evolve(){
     pet.type = static_cast<pet_type_t>(pet.type + 1);;
     pet.action = PET_ACTION_NONE;
     pet.animation_check = 0;
-    pet.x = Egg_X;
-    pet.w = Egg_W;
+    pet.x = Child_X;
+    pet.w = Child_W;
+    pet.h = Child_MAX_H;
+    pet.y = Child_Y;
     pet_update_bitmap();
 }
 
@@ -54,9 +64,11 @@ void pet_update()
         case PET_ACTION_NONE: 
             pet_animation_update();
         break;
-        case PET_ACTION_HATCH: 
+        case PET_ACTION_HATCH:
+            pet.y = Egg_Y; 
             pet.x = Egg_MAX_X;
             pet.w = Egg_MAX_W;
+            pet.h = 54;
             pet.bitmap = bitmap_egg_3;
             pet.action = PET_ACTION_TRAN;
         break;
