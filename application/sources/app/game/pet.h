@@ -5,14 +5,14 @@
 #include <stdint.h>
 #include "screens_bitmap.h"
 
-#define Egg_X          (46)
-#define Egg_MAX_X      (40)
-#define Egg_W          (36)
-#define Egg_MAX_W      (48)
-#define Egg_MAX_H      (39)
-#define Egg_H          (33)
-#define Egg_Y          (20)
-#define Egg_MAX_Y      (26)
+#define EGG_X          (46)
+#define EGG_MAX_X      (40)
+#define EGG_W          (36)
+#define EGG_MAX_W      (48)
+#define EGG_MAX_H      (39)
+#define EGG_H          (33)
+#define EGG_Y          (20)
+#define EGG_MAX_Y      (26)
 
 #define Child_X        (46)
 #define Child_W        (30)

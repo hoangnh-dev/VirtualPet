@@ -11,6 +11,11 @@ extern const unsigned char PROGMEM bitmap_egg_2[];
 extern const unsigned char PROGMEM bitmap_egg_3[];
 extern const unsigned char PROGMEM bitmap_child_1[];
 extern const unsigned char PROGMEM bitmap_child_2[];
+extern const unsigned char PROGMEM bitmap_child_eat_1[];
+extern const unsigned char PROGMEM bitmap_child_eat_2[];
+extern const unsigned char PROGMEM bitmap_child_dislike_1[];
+extern const unsigned char PROGMEM bitmap_child_dislike_2[];
+extern const unsigned char PROGMEM bitmap_child_happy_1[];
 extern const unsigned char PROGMEM bitmap_arrow_up[];
 extern const unsigned char PROGMEM bitmap_arrow_down[];
 #endif //__SCREENS_BITMAP_H__
