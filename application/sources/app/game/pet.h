@@ -4,28 +4,29 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "screens_bitmap.h"
+#include "pet_frame_t.h"
 
-#define EGG_X          (46)
-#define EGG_MAX_X      (40)
-#define EGG_W          (36)
-#define EGG_MAX_W      (48)
-#define EGG_MAX_H      (39)
-#define EGG_H          (33)
-#define EGG_Y          (20)
-#define EGG_MAX_Y      (26)
 
-#define Child_X        (46)
-#define Child_W        (30)
-#define Child_MAX_H    (27)
-#define Child_H        (24)
-#define Child_Y        (28)
-#define Child_MAX_Y    (31)
+
+// typedef enum {
+//     PET_ACTION_NONE,
+//     PET_ACTION_HATCH,
+//     PET_ACTION_TRAN
+// } pet_action_t;
 
 typedef enum {
-    PET_ACTION_NONE,
-    PET_ACTION_HATCH,
-    PET_ACTION_TRAN
+    PET_ACTION_IDLE,
+    PET_ACTION_EAT,
+    PET_ACTION_SLEEP,
+    PET_ACTION_HAPPY,
+    PET_ACTION_DISLIKE
 } pet_action_t;
+
+typedef enum {
+    PET_EVENT_NONE,
+    PET_EVENT_HATCH,
+    PET_EVENT_EVOLVE
+} pet_event_t;
 
 typedef enum {
     PET_TYPE_EGG = 0,
@@ -36,11 +37,11 @@ typedef enum {
 typedef struct {
     pet_type_t type;
     bool visible;
-    uint32_t x, y,h,w;
     uint8_t animation_check;
-    const uint8_t *bitmap;
     uint32_t lifetime;
     pet_action_t action;
+    pet_event_t event;
+    pet_frame_t current_frame;
 } pet_t;
 
 extern pet_t pet;

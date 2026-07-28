@@ -30,14 +30,21 @@ void view_scr_home() {
     view_render.print("100%");
 }
 void egg_display(){
-	view_render.fillRect(EGG_MAX_X, EGG_Y, EGG_MAX_W, EGG_MAX_H,BLACK);
-
-	view_render.drawBitmap(	pet.x, \
-		pet.y, \
-		pet.bitmap, \
-		pet.w, \
-		pet.h, \
-		WHITE);
+    view_render.fillRect(
+        46,
+        15,
+        48,
+        54,
+        BLACK
+    );
+    view_render.drawBitmap(
+        pet.current_frame.x,
+        pet.current_frame.y,
+        pet.current_frame.bitmap,
+        pet.current_frame.w,
+        pet.current_frame.h,
+        WHITE
+    );
 }
 
 void scr_home_handle(ak_msg_t *msg) {

@@ -1,42 +1,47 @@
 #include "pet.h"
-
+#include "pet_frames.h"
+#include "pet_config.h"
 #define EGG_HATCH_TIME (8)
 
 pet_t pet;
 
+void pet_set_frame(const pet_frame_t *frame){
+    pet.current_frame = *frame; 
+}
+
 void pet_setup(){
     pet.type = PET_TYPE_EGG;
-    pet.x = EGG_X;
-    pet.y = EGG_Y;
-    pet.w = EGG_W;
-    pet.h = EGG_MAX_H;
-    pet.bitmap = bitmap_egg_1;
+    pet_set_frame(&egg_frames[0]);
     pet.animation_check = 0;
-    pet.action = PET_ACTION_NONE; 
+    pet.action = PET_ACTION_IDLE;
+    pet.event = PET_EVENT_NONE; 
+}
+void child_update_bitmap(){
+    switch (pet.action) {
+        case PET_ACTION_EAT:
+            pet_set_frame(&child_eat_frames[pet.animation_check]);
+        break;
+
+        case PET_ACTION_DISLIKE:
+            pet_set_frame(&child_dislike_frames[pet.animation_check]);
+        break;
+
+        case PET_ACTION_HAPPY:
+            pet_set_frame(&child_happy_frames[pet.animation_check]);
+        break;
+
+        default:
+            pet_set_frame(&child_frames[pet.animation_check]);
+        break;
+    }
 }
 void pet_update_bitmap(){
     switch (pet.type) {
         case PET_TYPE_EGG:
-            if(pet.animation_check){
-                pet.y = EGG_Y;
-                pet.h = EGG_MAX_H;
-                pet.bitmap = bitmap_egg_1;
-            }else {
-                pet.y = EGG_MAX_Y;
-                pet.h = EGG_H;
-                pet.bitmap = bitmap_egg_2;
-            }
+            pet_set_frame(&egg_frames[pet.animation_check]);
         break;
         default:
-            if(pet.animation_check){
-                pet.y = Child_Y;
-                pet.h = Child_MAX_H;
-                pet.bitmap = bitmap_child_1;
-            }else {
-                pet.y = Child_MAX_Y;
-                pet.h = Child_H;
-                pet.bitmap = bitmap_child_2;
-            }
+            child_update_bitmap();
         break;
     }
 }
@@ -47,42 +52,45 @@ void pet_animation_update(){
 
 void pet_evolve(){
     if (pet.type >= PET_TYPE_ADULT) return;
-    
-    pet.type = static_cast<pet_type_t>(pet.type + 1);;
-    pet.action = PET_ACTION_NONE;
+    pet.type = static_cast<pet_type_t>(pet.type + 1);
+    pet.event = PET_EVENT_NONE;
+    pet.action = PET_ACTION_IDLE;
     pet.animation_check = 0;
-    pet.x = Child_X;
-    pet.w = Child_W;
-    pet.h = Child_MAX_H;
-    pet.y = Child_Y;
     pet_update_bitmap();
 }
 
-void pet_update()
-{
-    switch (pet.action) {
-        case PET_ACTION_NONE: 
-            pet_animation_update();
+void pet_event_update(){
+    switch (pet.event) {
+        case PET_EVENT_HATCH:
+            pet_set_frame(&egg_hatch_frame);
+            pet.event = PET_EVENT_EVOLVE;
         break;
-        case PET_ACTION_HATCH:
-            pet.y = EGG_Y; 
-            pet.x = EGG_MAX_X;
-            pet.w = EGG_MAX_W;
-            pet.h = 54;
-            pet.bitmap = bitmap_egg_3;
-            pet.action = PET_ACTION_TRAN;
-        break;
-        case PET_ACTION_TRAN:
+        case PET_EVENT_EVOLVE:
             pet_evolve();
         break;
         default:
         break;
     }
-    
+}
+void pet_action_update(){
+    switch (pet.action) {
+        case PET_ACTION_IDLE:
+            pet_animation_update();
+        break;
+        default:
+        break;
+    }
+}
+void pet_update(){
+    if (pet.event != PET_EVENT_NONE) {
+        pet_event_update();
+    } else {
+        pet_action_update();
+    }
 }
 void pet_time(){
     pet.lifetime ++;
     if(pet.type == PET_TYPE_EGG && pet.lifetime >= EGG_HATCH_TIME){
-        pet.action = PET_ACTION_HATCH;
+        pet.event = PET_EVENT_HATCH;
     }
 }

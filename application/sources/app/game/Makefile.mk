@@ -5,3 +5,4 @@ VPATH += sources/app/game
 
 # CPP source files
 SOURCES_CPP += sources/app/game/pet.cpp
+SOURCES_CPP += sources/app/game/pet_frames.cpp
