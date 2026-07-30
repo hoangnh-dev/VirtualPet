@@ -142,8 +142,6 @@ enum {
 #define AC_DISPLAY_MINIMUM_SCREEN_RENDER_INTERVAL_MS				(50) /* 50ms => Max 20 FPS */
 #define AC_DISPLAY_IDLE_INTERVAL									(15000)
 #define AC_DISPLAY_WELCOME_TEXT_ANIM_TICK_INTERVAL					(120)
-#define AC_DISPLAY_EGG_INTERVAL									    (500)
-#define AC_DISPLAY_PET_TIME_TICK_INTERVAL						    (1000)
 
 /* define signal */
 enum {
@@ -152,10 +150,6 @@ enum {
 	AC_DISPLAY_BUTTON_MODE_PRESSED,
 	AC_DISPLAY_BUTTON_UP_PRESSED,
 	AC_DISPLAY_BUTTON_DOWN_PRESSED,
-	AC_DISPLAY_SHOW_HOME,
-	AC_DISPLAY_SHOW_EGG,
-	AC_DISPLAY_PET_TIME_TICK,
-	AC_DISPLAY_SHOW_LOGO,
 	AC_DISPLAY_SHOW_IDLE,
 	AC_DISPLAY_SHOW_IDLE_BALL_MOVING_UPDATE,
 	AC_DISPLAY_WELCOME_TEXT_ANIM_TICK,
@@ -190,7 +184,33 @@ enum {
 enum {
 	AC_DBG_TEST_1 = AK_USER_DEFINE_SIG,
 };
-
+/*****************************************************************************/
+/*  VirtualPet game 'SCREEN' task define
+ */
+/*****************************************************************************/
+/* define timer */
+#define AC_DISPLAY_EGG_INTERVAL									    (500)
+#define AC_DISPLAY_PET_TIME_TICK_INTERVAL						    (1000)
+/* define signal */
+enum {
+	AC_DISPLAY_SHOW_HOME,
+	AC_DISPLAY_SHOW_EGG,
+	AC_DISPLAY_PET_TIME_TICK,
+	AC_DISPLAY_SHOW_LOGO,
+};
+/*****************************************************************************/
+/*  VirtualPet game 'PET' task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	VP_GAME_PET_SETUP,
+	VP_GAME_PET_TICK,
+	VP_GAME_PET_TIME,
+	VP_GAME_PET_EAT,
+	VP_GAME_PET_EVOLOVE,
+};
 /*****************************************************************************/
 /*  app function declare
  */

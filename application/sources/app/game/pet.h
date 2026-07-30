@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "screens_bitmap.h"
-#include "pet_frame_t.h"
+#include "sprite_frame_t.h"
 
 
 
@@ -41,7 +41,7 @@ typedef struct {
     uint32_t lifetime;
     pet_action_t action;
     pet_event_t event;
-    pet_frame_t current_frame;
+    sprite_frame_t current_frame;
 } pet_t;
 
 extern pet_t pet;

@@ -52,6 +52,7 @@ void scr_home_handle(ak_msg_t *msg) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
+		task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_SETUP);
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_EGG, AC_DISPLAY_EGG_INTERVAL, TIMER_PERIODIC);
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_PET_TIME_TICK, AC_DISPLAY_PET_TIME_TICK_INTERVAL, TIMER_PERIODIC);
 		// timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
@@ -62,11 +63,10 @@ void scr_home_handle(ak_msg_t *msg) {
 		SCREEN_TRAN(scr_menu_handle, &scr_menu);
 	}break;
 	case AC_DISPLAY_SHOW_EGG:{
-		pet_update();
-		egg_display();
+		task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_TICK);
 	} break;
 	case AC_DISPLAY_PET_TIME_TICK:{
-		pet_time();
+		task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_TIME);
 	} break;
 
 	default:

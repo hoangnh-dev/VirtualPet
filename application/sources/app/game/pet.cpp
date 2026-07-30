@@ -5,7 +5,7 @@
 
 pet_t pet;
 
-void pet_set_frame(const pet_frame_t *frame){
+void pet_set_frame(const sprite_frame_t *frame){
     pet.current_frame = *frame; 
 }
 
@@ -92,5 +92,21 @@ void pet_time(){
     pet.lifetime ++;
     if(pet.type == PET_TYPE_EGG && pet.lifetime >= EGG_HATCH_TIME){
         pet.event = PET_EVENT_HATCH;
+    }
+}
+void pet_task_handle(ak_msg_t *msg)
+{
+    switch (msg->sig) {
+        case VP_GAME_PET_SETUP:
+            pet_setup();
+        break;
+        case VP_GAME_PET_TICK:
+            pet_update();
+        break;
+        case VP_GAME_PET_TIME:
+            pet_time();
+        break;
+        default:
+        break;
     }
 }
