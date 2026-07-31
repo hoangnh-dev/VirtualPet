@@ -37,6 +37,7 @@ const task_t app_task_table[] = {
 	/* VIRTUALPET GAME */
 	/*************************************************************************/
 	{VP_GAME_PET_ID				,	TASK_PRI_LEVEL_4	,	pet_task_handle},
+	{VP_GAME_FOOD_ID			,	TASK_PRI_LEVEL_4	,  food_task_handle},
 
 	/*************************************************************************/
 	/* LINK TASK */

@@ -58,7 +58,8 @@ void view_scr_menu() {
 void scr_menu_select_items(){
 	switch (menu_index) {
         case EATING:
-            
+            task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_EAT);
+			SCREEN_TRAN(scr_home_handle, &scr_home);
             break;
         case CLEANING:
            
@@ -74,8 +75,6 @@ void scr_menu_select_items(){
             break;
     }
 }
-
-
 
 void scr_menu_handle(ak_msg_t *msg) {
 	switch (msg->sig) {

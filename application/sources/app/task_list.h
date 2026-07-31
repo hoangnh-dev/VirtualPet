@@ -29,6 +29,7 @@ enum {
 
 	/* GAME TASKS */
 	VP_GAME_PET_ID,
+	VP_GAME_FOOD_ID,
 
 #if defined(TASK_ZIGBEE_EN)
 	AC_TASK_ZIGBEE_ID,
@@ -84,6 +85,7 @@ extern void task_zigbee(ak_msg_t*);
 
 /* VIRTUALPET GAME HANDLE */
 extern void pet_task_handle(ak_msg_t*);
+extern void food_task_handle(ak_msg_t*);
 
 /* RF24 NETWORK TASK */
 extern void task_rf24_phy(ak_msg_t*);

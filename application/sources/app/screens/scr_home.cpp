@@ -18,25 +18,8 @@ view_screen_t scr_home = {
 	.focus_item = 0,
 };
 
-void view_scr_home() {
-    view_render.clear();
-    egg_display();
-    view_render.setTextSize(0.1);
-    view_render.setCursor(2,0);
-	view_render.print("Food:");
-    view_render.print("100%");
-    view_render.setCursor(60,0);
-	view_render.print("Health:");
-    view_render.print("100%");
-}
 void egg_display(){
-    view_render.fillRect(
-        46,
-        15,
-        48,
-        54,
-        BLACK
-    );
+    view_render.fillRect(46,15,48,54, BLACK);
     view_render.drawBitmap(
         pet.current_frame.x,
         pet.current_frame.y,
@@ -46,13 +29,36 @@ void egg_display(){
         WHITE
     );
 }
+void food_display(){
+    view_render.drawBitmap(
+        food.current_frame.x,
+        food.current_frame.y,
+        food.current_frame.bitmap,
+        food.current_frame.w,
+        food.current_frame.h,
+        WHITE
+    );
+}
+
+void view_scr_home() {
+    view_render.clear();
+    egg_display();
+	if (food.visible) food_display();
+    view_render.setTextSize(0.1);
+    view_render.setCursor(2,0);
+	view_render.print("Food:");
+    view_render.print(pet.hunger);
+    view_render.setCursor(60,0);
+	view_render.print("Health:");
+    view_render.print("100%");
+}
 
 void scr_home_handle(ak_msg_t *msg) {
 	switch (msg->sig) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
-		task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_SETUP);
+		
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_EGG, AC_DISPLAY_EGG_INTERVAL, TIMER_PERIODIC);
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_PET_TIME_TICK, AC_DISPLAY_PET_TIME_TICK_INTERVAL, TIMER_PERIODIC);
 		// timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
@@ -60,6 +66,8 @@ void scr_home_handle(ak_msg_t *msg) {
 		 
 	case AC_DISPLAY_BUTTON_UP_PRESSED:
 	case AC_DISPLAY_BUTTON_DOWN_PRESSED:{
+		timer_remove_attr(AC_TASK_DISPLAY_ID,AC_DISPLAY_SHOW_EGG);
+		timer_remove_attr(AC_TASK_DISPLAY_ID,AC_DISPLAY_PET_TIME_TICK);
 		SCREEN_TRAN(scr_menu_handle, &scr_menu);
 	}break;
 	case AC_DISPLAY_SHOW_EGG:{

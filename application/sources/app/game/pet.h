@@ -6,14 +6,6 @@
 #include "screens_bitmap.h"
 #include "sprite_frame_t.h"
 
-
-
-// typedef enum {
-//     PET_ACTION_NONE,
-//     PET_ACTION_HATCH,
-//     PET_ACTION_TRAN
-// } pet_action_t;
-
 typedef enum {
     PET_ACTION_IDLE,
     PET_ACTION_EAT,
@@ -38,6 +30,7 @@ typedef struct {
     pet_type_t type;
     bool visible;
     uint8_t animation_check;
+    uint8_t hunger;
     uint32_t lifetime;
     pet_action_t action;
     pet_event_t event;

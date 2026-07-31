@@ -209,7 +209,17 @@ enum {
 	VP_GAME_PET_TICK,
 	VP_GAME_PET_TIME,
 	VP_GAME_PET_EAT,
-	VP_GAME_PET_EVOLOVE,
+	VP_GAME_PET_FINISH,
+};
+/*****************************************************************************/
+/*  VirtualPet game 'FOOD' task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	VP_GAME_FOOD_SETUP,
+	VP_GAME_FOOD_TICK,
 };
 /*****************************************************************************/
 /*  app function declare
