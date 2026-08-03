@@ -20,6 +20,8 @@ extern const unsigned char PROGMEM bitmap_food_1[];
 extern const unsigned char PROGMEM bitmap_food_2[];
 extern const unsigned char PROGMEM bitmap_food_3[];
 extern const unsigned char PROGMEM bitmap_food_4[];
+extern const unsigned char PROGMEM bitmap_pet_sleep[];
+extern const unsigned char PROGMEM bitmap_pet_sleep_effect[];
 extern const unsigned char PROGMEM bitmap_arrow_up[];
 extern const unsigned char PROGMEM bitmap_arrow_down[];
 #endif //__SCREENS_BITMAP_H__

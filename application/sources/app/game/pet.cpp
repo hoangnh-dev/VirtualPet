@@ -18,6 +18,7 @@ void pet_setup(){
     pet.action = PET_ACTION_IDLE;
     pet.event = PET_EVENT_NONE;
     pet.hunger = 0;
+    pet.health = 0;
 }
 void reset(){
     pet_reset ++;
@@ -43,6 +44,15 @@ void child_update_bitmap(){
         case PET_ACTION_HAPPY:
             pet_set_frame(&child_happy_frames[pet.animation_check]);
             reset();
+        break;
+
+        case PET_ACTION_SLEEP:
+            if (pet.health >= 100){
+                pet.action = PET_ACTION_HAPPY;
+                return;
+            }
+            pet.health = pet.health + 10;
+            pet_set_frame(&pet_sleep_frame);
         break;
 
         default:
@@ -87,16 +97,7 @@ void pet_event_update(){
         break;
     }
 }
-// void pet_action_update(){
-//     switch (pet.action) {
-//         case PET_ACTION_IDLE:
-//             pet_animation_update();
-//         break;
-//         default:
-//         pet_animation_update();
-//         break;
-//     }
-// }
+
 void pet_update(){
     if (pet.event != PET_EVENT_NONE) {
         pet_event_update();
@@ -119,6 +120,17 @@ void pet_eating(){
         pet.action = PET_ACTION_DISLIKE;
     }
 }
+void pet_sleep(){
+    pet.animation_check = 0;
+     if(pet.health < 100){
+        pet.action = PET_ACTION_SLEEP;
+     }else {
+        pet.action = PET_ACTION_DISLIKE;
+     }
+}
+const sprite_frame_t *pet_sleep_effect_get_frame(){
+    return &pet_sleep_effect_frame;
+}
 
 void pet_task_handle(ak_msg_t *msg)
 {
@@ -134,6 +146,9 @@ void pet_task_handle(ak_msg_t *msg)
         break;
         case VP_GAME_PET_EAT:
             pet_eating();
+        break;
+        case VP_GAME_PET_SLEEP:
+            pet_sleep();
         break;
         case VP_GAME_PET_FINISH:
             pet.action = PET_ACTION_HAPPY;

@@ -3,6 +3,7 @@
 typedef enum {
     EATING = 0,
     CLEANING,
+	SLEEPING,
     TRAINING,
     BACK,
     MENU_COUNT          
@@ -11,6 +12,7 @@ typedef enum {
 static const char *menu_items[] = {
     [EATING]   = "Eating",
     [CLEANING] = "Cleaning",
+	[SLEEPING] = "Sleeping",
     [TRAINING] = "Training",
     [BACK]     = "Back"
 };
@@ -63,6 +65,10 @@ void scr_menu_select_items(){
             break;
         case CLEANING:
            
+            break;
+		case SLEEPING:
+           	task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_SLEEP);
+			SCREEN_TRAN(scr_home_handle, &scr_home);
             break;
         case TRAINING:
             

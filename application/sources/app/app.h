@@ -209,6 +209,7 @@ enum {
 	VP_GAME_PET_TICK,
 	VP_GAME_PET_TIME,
 	VP_GAME_PET_EAT,
+	VP_GAME_PET_SLEEP,
 	VP_GAME_PET_FINISH,
 };
 /*****************************************************************************/

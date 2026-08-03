@@ -1,7 +1,6 @@
 #include "scr_home.h"
 
 static void view_scr_home();
-static void egg_display();
 
 view_dynamic_t dyn_view_home = {
 	{
@@ -18,31 +17,30 @@ view_screen_t scr_home = {
 	.focus_item = 0,
 };
 
-void egg_display(){
+void draw_sprite(const sprite_frame_t *frame){
+    view_render.drawBitmap(frame->x,frame->y,frame->bitmap,frame->w,frame->h,WHITE);
+}
+
+void sleep_effect_display(){
+	const sprite_frame_t *frame = pet_sleep_effect_get_frame();
+	draw_sprite(frame);
+}
+
+void pet_display(){
     view_render.fillRect(46,15,48,54, BLACK);
-    view_render.drawBitmap(
-        pet.current_frame.x,
-        pet.current_frame.y,
-        pet.current_frame.bitmap,
-        pet.current_frame.w,
-        pet.current_frame.h,
-        WHITE
-    );
+    draw_sprite(&pet.current_frame);
+	if (pet.type == PET_TYPE_EGG) return;
+	if(pet.action == PET_ACTION_SLEEP && pet.animation_check == 1){
+		sleep_effect_display();
+	}
 }
 void food_display(){
-    view_render.drawBitmap(
-        food.current_frame.x,
-        food.current_frame.y,
-        food.current_frame.bitmap,
-        food.current_frame.w,
-        food.current_frame.h,
-        WHITE
-    );
+	draw_sprite(&food.current_frame);
 }
 
 void view_scr_home() {
     view_render.clear();
-    egg_display();
+    pet_display();
 	if (food.visible) food_display();
     view_render.setTextSize(0.1);
     view_render.setCursor(2,0);
@@ -50,7 +48,7 @@ void view_scr_home() {
     view_render.print(pet.hunger);
     view_render.setCursor(60,0);
 	view_render.print("Health:");
-    view_render.print("100%");
+    view_render.print(pet.health);
 }
 
 void scr_home_handle(ak_msg_t *msg) {

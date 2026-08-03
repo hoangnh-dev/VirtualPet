@@ -31,12 +31,14 @@ typedef struct {
     bool visible;
     uint8_t animation_check;
     uint8_t hunger;
+    uint8_t health;
     uint32_t lifetime;
     pet_action_t action;
     pet_event_t event;
     sprite_frame_t current_frame;
 } pet_t;
 
+const sprite_frame_t *pet_sleep_effect_get_frame();
 extern pet_t pet;
 
 void pet_setup();

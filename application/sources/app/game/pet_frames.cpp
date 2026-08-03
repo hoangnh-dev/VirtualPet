@@ -25,3 +25,10 @@ const sprite_frame_t child_happy_frames[2] = {
     { Child_X, Child_Y, Child_W, Child_H, bitmap_child_1 },
     { Child_X, Child_Y, Child_W, Child_H, bitmap_child_happy_1 },
 };
+const sprite_frame_t pet_sleep_frame = {
+    EGG_MAX_X, 27, 45, 39, bitmap_pet_sleep
+};
+
+const sprite_frame_t pet_sleep_effect_frame = {
+    77, 20, 37, 18, bitmap_pet_sleep_effect
+};
