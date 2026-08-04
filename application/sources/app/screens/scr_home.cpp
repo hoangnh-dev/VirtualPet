@@ -45,7 +45,7 @@ void view_scr_home() {
     view_render.setTextSize(0.1);
     view_render.setCursor(2,0);
 	view_render.print("Food:");
-    view_render.print(pet.hunger);
+    view_render.print(pet.satiety);
     view_render.setCursor(60,0);
 	view_render.print("Health:");
     view_render.print(pet.health);

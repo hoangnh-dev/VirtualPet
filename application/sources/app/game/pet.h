@@ -27,12 +27,18 @@ typedef enum {
 } pet_type_t;
 
 typedef struct {
+    uint32_t life_time;
+    uint32_t food_time;
+    uint32_t sleep_time;
+} pet_time_t;
+
+typedef struct {
     pet_type_t type;
     bool visible;
     uint8_t animation_check;
-    uint8_t hunger;
+    uint8_t satiety;
     uint8_t health;
-    uint32_t lifetime;
+    pet_time_t time;
     pet_action_t action;
     pet_event_t event;
     sprite_frame_t current_frame;

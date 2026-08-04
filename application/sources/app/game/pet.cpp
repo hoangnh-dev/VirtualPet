@@ -3,6 +3,8 @@
 #include "pet_config.h"
 #include "task_list.h"
 #define EGG_HATCH_TIME (8)
+#define PET_EAT_TIME   (30)
+#define PET_SLEEP_TIME (30)
 
 pet_t pet;
 uint8_t pet_reset = 0;
@@ -17,8 +19,22 @@ void pet_setup(){
     pet.animation_check = 0;
     pet.action = PET_ACTION_IDLE;
     pet.event = PET_EVENT_NONE;
-    pet.hunger = 0;
+    pet.satiety = 0;
     pet.health = 0;
+    pet.time.sleep_time = 0;
+    pet.time.life_time =  0;
+    pet.time.food_time = 0;
+}
+bool pet_check_time(uint32_t *last_time, uint32_t interval){
+    if ((pet.time.life_time - *last_time) >= interval) {
+        *last_time = pet.time.life_time;
+        return true;
+    }
+
+    return false;
+}
+void pet_time_update(uint32_t *last_time){
+    *last_time = pet.time.life_time;
 }
 void reset(){
     pet_reset ++;
@@ -49,9 +65,10 @@ void child_update_bitmap(){
         case PET_ACTION_SLEEP:
             if (pet.health >= 100){
                 pet.action = PET_ACTION_HAPPY;
+                pet_time_update(&pet.time.sleep_time);
                 return;
             }
-            pet.health = pet.health + 10;
+            pet.health = pet.health + 5;
             pet_set_frame(&pet_sleep_frame);
         break;
 
@@ -105,15 +122,38 @@ void pet_update(){
         pet_animation_update();
     }
 }
+void pet_satiety_reduce(){
+    if (pet.type == PET_TYPE_EGG || pet.satiety == 0) {
+        return;
+    }
+
+    if (pet_check_time(&pet.time.food_time, PET_EAT_TIME)) {
+        pet.satiety--;
+    }
+}
+void pet_health_reduce(){
+    if (pet.type == PET_TYPE_EGG || pet.health == 0) {
+        return;
+    }
+
+    if (pet_check_time(&pet.time.sleep_time, PET_SLEEP_TIME)) {
+        pet.health--;
+    }
+}
 void pet_time(){
-    pet.lifetime ++;
-    if(pet.type == PET_TYPE_EGG && pet.lifetime >= EGG_HATCH_TIME){
+    pet.time.life_time++;
+
+    if(pet.type == PET_TYPE_EGG && pet.time.life_time >= EGG_HATCH_TIME){
         pet.event = PET_EVENT_HATCH;
     }
+
+    pet_satiety_reduce();
+    pet_health_reduce();
+    
 }
 void pet_eating(){
     pet.animation_check = 0;
-    if(pet.hunger < 100){
+    if(pet.satiety < 100){
         pet.action = PET_ACTION_EAT;
         task_post_pure_msg(VP_GAME_FOOD_ID, VP_GAME_FOOD_SETUP);
     }else {
@@ -152,7 +192,8 @@ void pet_task_handle(ak_msg_t *msg)
         break;
         case VP_GAME_PET_FINISH:
             pet.action = PET_ACTION_HAPPY;
-            pet.hunger = 100;
+            pet.satiety = 100;
+            pet_time_update(&pet.time.food_time);
         break;
         
         default:
