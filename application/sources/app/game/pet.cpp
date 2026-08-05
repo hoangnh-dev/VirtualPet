@@ -2,9 +2,6 @@
 #include "pet_frames.h"
 #include "pet_config.h"
 #include "task_list.h"
-#define EGG_HATCH_TIME (8)
-#define PET_EAT_TIME   (30)
-#define PET_SLEEP_TIME (30)
 
 pet_t pet;
 uint8_t pet_reset = 0;
@@ -21,6 +18,7 @@ void pet_setup(){
     pet.event = PET_EVENT_NONE;
     pet.satiety = 0;
     pet.health = 0;
+    pet.poop = 0;
     pet.time.sleep_time = 0;
     pet.time.life_time =  0;
     pet.time.food_time = 0;
@@ -60,6 +58,10 @@ void child_update_bitmap(){
         case PET_ACTION_HAPPY:
             pet_set_frame(&child_happy_frames[pet.animation_check]);
             reset();
+        break;
+
+        case PET_ACTION_ANNOY:
+            pet_set_frame(&child_annoying_frames[pet.animation_check]);
         break;
 
         case PET_ACTION_SLEEP:
@@ -122,6 +124,14 @@ void pet_update(){
         pet_animation_update();
     }
 }
+void pet_check_poop(){
+    if (pet.poop == 100){
+        pet.action = PET_ACTION_ANNOY;
+        task_post_pure_msg(VP_GAME_POOP_ID, VP_GAME_POOP_SETUP);
+        return;
+    }
+    pet.poop ++;
+}
 void pet_satiety_reduce(){
     if (pet.type == PET_TYPE_EGG || pet.satiety == 0) {
         return;
@@ -129,6 +139,7 @@ void pet_satiety_reduce(){
 
     if (pet_check_time(&pet.time.food_time, PET_EAT_TIME)) {
         pet.satiety--;
+        pet_check_poop();
     }
 }
 void pet_health_reduce(){

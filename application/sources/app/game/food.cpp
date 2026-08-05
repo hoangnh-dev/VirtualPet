@@ -34,8 +34,7 @@ void food_update_bitmap(){
     food.current_frame.bitmap = food_bitmaps[food.frame_index];
 }
 
-void food_task_handle(ak_msg_t *msg)
-{
+void food_task_handle(ak_msg_t *msg){
     switch (msg->sig) {
         case VP_GAME_FOOD_SETUP:
             food_setup();

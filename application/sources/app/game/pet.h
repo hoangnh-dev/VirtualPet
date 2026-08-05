@@ -11,7 +11,8 @@ typedef enum {
     PET_ACTION_EAT,
     PET_ACTION_SLEEP,
     PET_ACTION_HAPPY,
-    PET_ACTION_DISLIKE
+    PET_ACTION_DISLIKE,
+    PET_ACTION_ANNOY
 } pet_action_t;
 
 typedef enum {
@@ -38,6 +39,7 @@ typedef struct {
     uint8_t animation_check;
     uint8_t satiety;
     uint8_t health;
+    uint8_t poop;
     pet_time_t time;
     pet_action_t action;
     pet_event_t event;

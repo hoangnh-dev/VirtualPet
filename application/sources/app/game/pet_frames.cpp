@@ -21,6 +21,10 @@ const sprite_frame_t child_dislike_frames[2] = {
     { Child_X, Child_Y, Child_W, Child_H, bitmap_child_dislike_1 },
     { Child_X, Child_Y, Child_W, Child_H, bitmap_child_dislike_2 },
 };
+const sprite_frame_t child_annoying_frames[2] = {
+    { Child_X, Child_Y, Child_W, Child_H, bitmap_child_annoying_1 },
+    { Child_X, Child_MAX_Y, Child_W, Child_MIN_H, bitmap_child_annoying_2 },
+};
 const sprite_frame_t child_happy_frames[2] = {
     { Child_X, Child_Y, Child_W, Child_H, bitmap_child_1 },
     { Child_X, Child_Y, Child_W, Child_H, bitmap_child_happy_1 },

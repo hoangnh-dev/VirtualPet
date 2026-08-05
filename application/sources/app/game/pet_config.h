@@ -21,4 +21,9 @@
 #define Child_MAX_Y    (31)
 #define Child_MIN_Y    (21)
 
+// Time
+#define EGG_HATCH_TIME (8)
+#define PET_EAT_TIME   (30)
+#define PET_SLEEP_TIME (30)
+
 #endif
