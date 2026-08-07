@@ -1,7 +1,7 @@
 #ifndef PET_FRAME_H
 #define PET_FRAME_H
 
-#include "sprite_frame_t.h"
+#include "common.h"
 
 extern const sprite_frame_t egg_frames[2];
 extern const sprite_frame_t egg_hatch_frame;

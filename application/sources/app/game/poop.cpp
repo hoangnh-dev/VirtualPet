@@ -36,6 +36,11 @@ void poop_task_handle(ak_msg_t *msg){
         case VP_GAME_POOP_TICK:
             poop_update_bitmap();
         break;
+        case VP_GAME_POOP_CLEAN:{
+            poop.visible = false;
+            reason_t reason = PET_CLEANED;
+            task_post_common_msg(VP_GAME_PET_ID, VP_GAME_PET_FINISH,(uint8_t*)&reason,sizeof(reason));
+        }break;
         default:
         break;
     }

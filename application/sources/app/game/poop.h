@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "sprite_frame_t.h"
+#include "common.h"
 #include "screens_bitmap.h"
 
 typedef struct {

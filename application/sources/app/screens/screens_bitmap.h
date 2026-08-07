@@ -26,6 +26,7 @@ extern const unsigned char PROGMEM bitmap_pet_sleep[];
 extern const unsigned char PROGMEM bitmap_pet_sleep_effect[];
 extern const unsigned char PROGMEM bitmap_poop_1[];
 extern const unsigned char PROGMEM bitmap_poop_2[];
+extern const unsigned char PROGMEM bitmap_clean[];
 extern const unsigned char PROGMEM bitmap_arrow_up[];
 extern const unsigned char PROGMEM bitmap_arrow_down[];
 #endif //__SCREENS_BITMAP_H__

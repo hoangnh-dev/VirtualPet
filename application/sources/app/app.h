@@ -231,6 +231,17 @@ enum {
 enum {
 	VP_GAME_POOP_SETUP,
 	VP_GAME_POOP_TICK,
+	VP_GAME_POOP_CLEAN,
+};
+/*****************************************************************************/
+/*  VirtualPet game 'CLEAN' task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	VP_GAME_CLEAN_SETUP,
+	VP_GAME_CLEAN_TICK,
 };
 /*****************************************************************************/
 /*  app function declare

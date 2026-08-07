@@ -27,7 +27,9 @@ void food_setup(){
 void food_update_bitmap(){
     if (food.frame_index >= 3){
         food.visible = false;
-        task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_FINISH);
+        reason_t reason = PET_EAT;
+        task_post_common_msg(VP_GAME_PET_ID, VP_GAME_PET_FINISH,(uint8_t*)&reason,sizeof(reason));
+        // task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_FINISH);
         return;
     }
     food.frame_index ++;

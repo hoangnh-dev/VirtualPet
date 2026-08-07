@@ -3,8 +3,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
+
 #include "screens_bitmap.h"
-#include "sprite_frame_t.h"
+#include "common.h"
 
 typedef enum {
     PET_ACTION_IDLE,

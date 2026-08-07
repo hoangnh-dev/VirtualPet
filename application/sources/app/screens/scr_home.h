@@ -5,5 +5,6 @@
 #include "pet.h"
 #include "food.h"
 #include "poop.h"
+#include "clean.h"
 
 #endif // SCR_HOME_H

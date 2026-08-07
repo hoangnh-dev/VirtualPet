@@ -2,6 +2,7 @@
 #include "pet_frames.h"
 #include "pet_config.h"
 #include "task_list.h"
+#include <cstring>
 
 pet_t pet;
 uint8_t pet_reset = 0;
@@ -127,6 +128,7 @@ void pet_update(){
 void pet_check_poop(){
     if (pet.poop == 100){
         pet.action = PET_ACTION_ANNOY;
+        pet.poop = 0;
         task_post_pure_msg(VP_GAME_POOP_ID, VP_GAME_POOP_SETUP);
         return;
     }
@@ -201,10 +203,14 @@ void pet_task_handle(ak_msg_t *msg)
         case VP_GAME_PET_SLEEP:
             pet_sleep();
         break;
-        case VP_GAME_PET_FINISH:
+        case VP_GAME_PET_FINISH:{
+            reason_t reason;
+            memcpy(&reason, get_data_common_msg(msg), sizeof(reason));
             pet.action = PET_ACTION_HAPPY;
+            if (reason == PET_CLEANED) return;
             pet.satiety = 100;
             pet_time_update(&pet.time.food_time);
+        }
         break;
         
         default:

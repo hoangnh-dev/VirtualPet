@@ -1,19 +1,19 @@
-#ifndef FOOD_H
-#define FOOD_H
+#ifndef CLEAN_H
+#define CLEAN_H
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "common.h"
+#include "sprite_frame_t.h"
 #include "screens_bitmap.h"
 
 typedef struct {
     bool visible = false;
     uint8_t frame_index;
     sprite_frame_t current_frame;
-} food_t;
+} clean_t;
 
-extern food_t food;
+extern clean_t clean;
 
-void food_update(void);
+void clean_update(void);
 
 #endif
