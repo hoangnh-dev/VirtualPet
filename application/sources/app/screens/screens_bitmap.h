@@ -29,4 +29,8 @@ extern const unsigned char PROGMEM bitmap_poop_2[];
 extern const unsigned char PROGMEM bitmap_clean[];
 extern const unsigned char PROGMEM bitmap_arrow_up[];
 extern const unsigned char PROGMEM bitmap_arrow_down[];
+extern const unsigned char PROGMEM bitmap_train_arrow_up[];
+extern const unsigned char PROGMEM bitmap_train_arrow_down[];
+extern const unsigned char PROGMEM bitmap_check_mark[];
+extern const unsigned char PROGMEM bitmap_x_mark[];
 #endif //__SCREENS_BITMAP_H__

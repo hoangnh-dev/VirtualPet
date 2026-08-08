@@ -58,4 +58,9 @@ extern view_dynamic_t dyn_view_menu;
 extern view_screen_t scr_menu;
 extern void scr_menu_handle(ak_msg_t* msg);
 
+// scr_training
+extern view_dynamic_t dyn_view_training;
+extern view_screen_t scr_training;
+extern void scr_training_handle(ak_msg_t* msg);
+
 #endif //__SCREENS_H__
