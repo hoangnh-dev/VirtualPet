@@ -68,4 +68,9 @@ extern view_dynamic_t dyn_view_status;
 extern view_screen_t scr_status;
 extern void scr_status_handle(ak_msg_t* msg);
 
+// scr_naming
+extern view_dynamic_t dyn_view_naming;
+extern view_screen_t scr_naming;
+extern void scr_naming_handle(ak_msg_t* msg);
+
 #endif //__SCREENS_H__

@@ -37,7 +37,8 @@ void scr_splash_handle(ak_msg_t *msg) {
 	} break;
 	case AC_DISPLAY_SHOW_HOME:{
 		APP_DBG_SIG("AC_DISPLAY_SHOW_HOME\n");
-		SCREEN_TRAN(scr_home_handle, &scr_home);
+		// SCREEN_TRAN(scr_home_handle, &scr_home);
+		SCREEN_TRAN(scr_naming_handle, &scr_naming);
 	}break;
 
 	default:
