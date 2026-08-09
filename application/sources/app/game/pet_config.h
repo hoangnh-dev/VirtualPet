@@ -21,6 +21,11 @@
 #define Child_MAX_Y    (31)
 #define Child_MIN_Y    (21)
 
+// Child train
+#define Child_TRAIN_X            (10)
+#define Child_TRAIN_MIN_Y        (14)
+#define Child_TRAIN_Y            (24)
+
 // Time
 #define EGG_HATCH_TIME (8)
 #define PET_EAT_TIME   (30)

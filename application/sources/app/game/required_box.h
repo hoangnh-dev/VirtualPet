@@ -19,7 +19,7 @@ typedef struct {
     bool visible = false;
     uint8_t count;
     uint8_t current_time;
-    uint8_t renew_time;
+    uint8_t renew_time = 5;
     uint8_t game_score;
     uint8_t frame_index[MAX_BOX];
     sprite_frame_t current_frame[MAX_BOX];

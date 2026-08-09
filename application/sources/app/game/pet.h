@@ -13,7 +13,8 @@ typedef enum {
     PET_ACTION_SLEEP,
     PET_ACTION_HAPPY,
     PET_ACTION_DISLIKE,
-    PET_ACTION_ANNOY
+    PET_ACTION_ANNOY,
+    PET_ACTION_TRAIN
 } pet_action_t;
 
 typedef enum {
@@ -39,7 +40,7 @@ typedef struct {
     bool visible;
     uint8_t animation_check;
     uint8_t satiety;
-    uint8_t health;
+    uint8_t health = 0;
     uint8_t poop;
     pet_time_t time;
     pet_action_t action;

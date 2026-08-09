@@ -48,7 +48,7 @@ void box_correct(){
     if(count_correct == box.count) {
         box.game_score += 10;
         count_correct = 0;
-        box.renew_time =0;
+        box.renew_time = 0;
     }
 }
 void box_wrong(){
@@ -74,7 +74,7 @@ void box_update(){
 
 void time_update(){
     if(box.current_time > 0 ) box.current_time --;
-    if(box.current_time > 0 ) box.renew_time --;
+    if(box.renew_time > 0 ) box.renew_time --;
 }
 bool box_check(uint8_t check){
     return box.frame_index[count_correct] == check;

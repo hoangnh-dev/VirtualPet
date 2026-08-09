@@ -18,6 +18,8 @@ extern const unsigned char PROGMEM bitmap_child_dislike_2[];
 extern const unsigned char PROGMEM bitmap_child_happy_1[];
 extern const unsigned char PROGMEM bitmap_child_annoying_1[];
 extern const unsigned char PROGMEM bitmap_child_annoying_2[];
+extern const unsigned char PROGMEM bitmap_child_attack_1[];
+extern const unsigned char PROGMEM bitmap_child_attack_2[];
 extern const unsigned char PROGMEM bitmap_food_1[];
 extern const unsigned char PROGMEM bitmap_food_2[];
 extern const unsigned char PROGMEM bitmap_food_3[];

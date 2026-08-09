@@ -30,15 +30,18 @@ void view_scr_training() {
     view_render.setCursor(2,55);
     view_render.print("Refresh:");
     view_render.print(box.renew_time);
+    draw_spritet(&pet.current_frame);
     for (auto &frame : box.current_frame) {
         draw_spritet(&frame);
     }
+
 }
 
 void scr_training_handle(ak_msg_t *msg) {
 	switch (msg->sig) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
+        pet.action = PET_ACTION_TRAIN;
         timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_BOX, AC_DISPLAY_EGG_INTERVAL, TIMER_PERIODIC);
         timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_TRAIN_TIME_TICK, AC_DISPLAY_PET_TIME_TICK_INTERVAL, TIMER_PERIODIC);
         timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_TRAIN_FINISH, AC_DISPLAY_BOX_TIME_TICK_INTERVAL, TIMER_ONE_SHOT);
@@ -49,6 +52,7 @@ void scr_training_handle(ak_msg_t *msg) {
 	} break;
     case AC_DISPLAY_TRAIN_TIME_TICK: {
 		task_post_pure_msg(VP_GAME_BOX_ID, VP_GAME_BOX_TIME_TICK);
+        task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_TICK);
 	} break;
     case AC_DISPLAY_BUTTON_UP_PRESSED:{
         uint8_t input = 0;
@@ -61,6 +65,7 @@ void scr_training_handle(ak_msg_t *msg) {
         break;
 	}
     case AC_DISPLAY_TRAIN_FINISH: {
+        pet.action = PET_ACTION_IDLE;
 		timer_remove_attr(AC_TASK_DISPLAY_ID,AC_DISPLAY_SHOW_BOX);
 		timer_remove_attr(AC_TASK_DISPLAY_ID,AC_DISPLAY_TRAIN_TIME_TICK);
         SCREEN_TRAN(scr_home_handle, &scr_home);

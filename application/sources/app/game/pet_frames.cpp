@@ -36,3 +36,8 @@ const sprite_frame_t pet_sleep_frame = {
 const sprite_frame_t pet_sleep_effect_frame = {
     77, 20, 37, 18, bitmap_pet_sleep_effect
 };
+
+const sprite_frame_t child_attack_frames[2] = {
+    { Child_TRAIN_X, Child_TRAIN_Y, Child_W, Child_H, bitmap_child_attack_1},
+    { Child_TRAIN_X, Child_TRAIN_MIN_Y, Child_W, Child_MAX_H, bitmap_child_attack_2},
+};

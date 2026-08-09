@@ -75,6 +75,10 @@ void child_update_bitmap(){
             pet_set_frame(&pet_sleep_frame);
         break;
 
+        case PET_ACTION_TRAIN:
+            pet_set_frame(&child_attack_frames[pet.animation_check]);
+        break;
+
         default:
             pet_set_frame(&child_frames[pet.animation_check]);
         break;
