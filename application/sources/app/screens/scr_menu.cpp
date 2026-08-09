@@ -5,6 +5,7 @@ typedef enum {
     CLEANING,
 	SLEEPING,
     TRAINING,
+	STATUS,
     BACK,
     MENU_COUNT          
 } menu_item_t;
@@ -14,6 +15,7 @@ static const char *menu_items[] = {
     [CLEANING] = "Cleaning",
 	[SLEEPING] = "Sleeping",
     [TRAINING] = "Training",
+	[STATUS]   = "Status",
     [BACK]     = "Back"
 };
 static void view_scr_menu();
@@ -77,6 +79,9 @@ void scr_menu_select_items(){
 			task_post_pure_msg(VP_GAME_FIRE_ID, VP_GAME_FIRE_SETUP);
             SCREEN_TRAN(scr_training_handle, &scr_training);
             break;
+		case STATUS:
+            SCREEN_TRAN(scr_status_handle, &scr_status);
+        	break;
         case BACK:
 			menu_index = EATING;
             SCREEN_TRAN(scr_home_handle, &scr_home);
