@@ -72,7 +72,9 @@ void scr_menu_select_items(){
 			SCREEN_TRAN(scr_home_handle, &scr_home);
             break;
         case TRAINING:
+			task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_TRAIN);
 			task_post_pure_msg(VP_GAME_BOX_ID, VP_GAME_BOX_SETUP);
+			task_post_pure_msg(VP_GAME_FIRE_ID, VP_GAME_FIRE_SETUP);
             SCREEN_TRAN(scr_training_handle, &scr_training);
             break;
         case BACK:

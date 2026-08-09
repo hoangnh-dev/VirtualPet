@@ -33,6 +33,7 @@ enum {
 	VP_GAME_POOP_ID,
 	VP_GAME_CLEAN_ID,
 	VP_GAME_BOX_ID,
+	VP_GAME_FIRE_ID,
 
 #if defined(TASK_ZIGBEE_EN)
 	AC_TASK_ZIGBEE_ID,
@@ -92,6 +93,7 @@ extern void food_task_handle(ak_msg_t*);
 extern void poop_task_handle(ak_msg_t*);
 extern void clean_task_handle(ak_msg_t*);
 extern void box_task_handle(ak_msg_t*);
+extern void fire_task_handle(ak_msg_t*);
 
 
 /* RF24 NETWORK TASK */

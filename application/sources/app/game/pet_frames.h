@@ -14,5 +14,4 @@ extern const sprite_frame_t child_attack_frames[2];
 extern const sprite_frame_t pet_sleep_frame;
 extern const sprite_frame_t pet_sleep_effect_frame;
 
-
 #endif

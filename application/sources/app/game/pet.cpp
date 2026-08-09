@@ -44,28 +44,28 @@ void reset(){
 }
 void child_update_bitmap(){
     switch (pet.action) {
-        case PET_ACTION_EAT:
-            pet_set_frame(&child_eat_frames[pet.animation_check]);
+        case PET_ACTION_EAT:{
+                pet_set_frame(&child_eat_frames[pet.animation_check]);
             if(pet.animation_check == 1){
                 task_post_pure_msg(VP_GAME_FOOD_ID, VP_GAME_FOOD_TICK);
             }
-        break;
+        }break;
 
-        case PET_ACTION_DISLIKE:
+        case PET_ACTION_DISLIKE:{
             pet_set_frame(&child_dislike_frames[pet.animation_check]);
             reset();
-        break;
+        }break;
 
-        case PET_ACTION_HAPPY:
+        case PET_ACTION_HAPPY:{
             pet_set_frame(&child_happy_frames[pet.animation_check]);
             reset();
-        break;
+        }break;
 
-        case PET_ACTION_ANNOY:
+        case PET_ACTION_ANNOY:{
             pet_set_frame(&child_annoying_frames[pet.animation_check]);
-        break;
+        }break;
 
-        case PET_ACTION_SLEEP:
+        case PET_ACTION_SLEEP:{
             if (pet.health >= 100){
                 pet.action = PET_ACTION_HAPPY;
                 pet_time_update(&pet.time.sleep_time);
@@ -73,15 +73,19 @@ void child_update_bitmap(){
             }
             pet.health = pet.health + 5;
             pet_set_frame(&pet_sleep_frame);
-        break;
+        }break;
 
-        case PET_ACTION_TRAIN:
+        case PET_ACTION_TRAIN:{
             pet_set_frame(&child_attack_frames[pet.animation_check]);
+            if (pet.animation_check == 1){
+                task_post_pure_msg(VP_GAME_FIRE_ID, VP_GAME_FIRE_START);
+            }
+        }
         break;
 
-        default:
+        default:{
             pet_set_frame(&child_frames[pet.animation_check]);
-        break;
+        }break;
     }
 }
 void pet_update_bitmap(){
@@ -185,6 +189,10 @@ void pet_sleep(){
         pet.action = PET_ACTION_DISLIKE;
      }
 }
+void pet_train(){
+    pet.action = PET_ACTION_TRAIN;
+    pet.animation_check = 0;
+}
 const sprite_frame_t *pet_sleep_effect_get_frame(){
     return &pet_sleep_effect_frame;
 }
@@ -192,20 +200,29 @@ const sprite_frame_t *pet_sleep_effect_get_frame(){
 void pet_task_handle(ak_msg_t *msg)
 {
     switch (msg->sig) {
-        case VP_GAME_PET_SETUP:
+        case VP_GAME_PET_SETUP:{
             pet_setup();
+        }
         break;
-        case VP_GAME_PET_TICK:
+        case VP_GAME_PET_TICK:{
             pet_update();
+        }
         break;
-        case VP_GAME_PET_TIME:
+        case VP_GAME_PET_TIME:{
             pet_time();
+        }
         break;
-        case VP_GAME_PET_EAT:
+        case VP_GAME_PET_EAT:{
             pet_eating();
+        }
         break;
-        case VP_GAME_PET_SLEEP:
+        case VP_GAME_PET_SLEEP:{
             pet_sleep();
+        }
+        break;
+        case VP_GAME_PET_TRAIN: {
+            pet_train();
+        }
         break;
         case VP_GAME_PET_FINISH:{
             reason_t reason;

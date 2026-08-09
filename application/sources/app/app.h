@@ -214,6 +214,7 @@ enum {
 	VP_GAME_PET_TIME,
 	VP_GAME_PET_EAT,
 	VP_GAME_PET_SLEEP,
+	VP_GAME_PET_TRAIN,
 	VP_GAME_PET_FINISH,
 };
 /*****************************************************************************/
@@ -246,6 +247,17 @@ enum {
 enum {
 	VP_GAME_CLEAN_SETUP,
 	VP_GAME_CLEAN_TICK,
+};
+/*****************************************************************************/
+/*  VirtualPet game 'FIRE_BALL' task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	VP_GAME_FIRE_SETUP,
+	VP_GAME_FIRE_TICK,
+	VP_GAME_FIRE_START,
 };
 /*****************************************************************************/
 /*  app function declare
