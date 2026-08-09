@@ -3,19 +3,19 @@
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/0a269ecc-4834-4ac1-8a02-51f98b397c81" width="75%"><br>
+      <img src="https://github.com/user-attachments/assets/0a269ecc-4834-4ac1-8a02-51f98b397c81" width="75%" height="250px"><br>
       <b>Splash screen</b>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/441786a5-e282-42e8-a1f9-553144ba21b9" width="75%"><br>
+      <img src="https://github.com/user-attachments/assets/441786a5-e282-42e8-a1f9-553144ba21b9" width="75%" height="250px"><br>
       <b>Egg hatch</b>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/6c0121b9-99d0-4057-8d61-3c93ecc8d3f3" width="75%"><br>
+      <img src="https://github.com/user-attachments/assets/6c0121b9-99d0-4057-8d61-3c93ecc8d3f3" width="75%" height="250px"><br>
       <b>Pet sleep</b>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/f649c2aa-5820-41f7-89e0-a58b29ad7444" width="75%"><br>
+      <img src="https://github.com/user-attachments/assets/f649c2aa-5820-41f7-89e0-a58b29ad7444" width="75%" height="250px"><br>
       <b>Training</b>
     </td>
   </tr>
