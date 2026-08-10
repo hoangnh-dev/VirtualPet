@@ -14,6 +14,8 @@ typedef struct {
     char name[NAME_LEN + 1];
     uint16_t weight;
     uint16_t height;
+    uint16_t age;
+    uint16_t power;
 } pet_profile_t;
 
 extern pet_profile_t profile;

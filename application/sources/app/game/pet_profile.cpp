@@ -24,8 +24,10 @@ void pet_profile_setup(){
     name_index = 0;
     memset(profile.name, '_', NAME_LEN);
     profile.name[NAME_LEN] = '\0';
-    profile.weight = BASIC_HEIGHT;
+    profile.weight = BASIC_WEIGHT;
     profile.height = BASIC_HEIGHT;
+    profile.age = 0;
+    profile.power = 0;
     pet_profile_update_name();
 }
 
