@@ -21,27 +21,48 @@ void view_scr_naming() {
     view_render.clear();
     view_render.drawBitmap(46,0,bitmap_egg_1,36,39,WHITE);
     uint8_t x = 42;
-    for (uint8_t i = 0; i < 5; i++) {
+    for (uint8_t i = 0; i < NAME_LEN; i++) {
         view_render.setCursor(x,50);
-        view_render.print('_');
-        if(i == 0){
+        view_render.print(profile.name[i]);
+        if(i == name_index){
             view_render.setCursor(x,60);
             view_render.print('^');
         }
         x += 10;
     }
 }
+void name_button_action(uint8_t input){
+	task_post_common_msg(VP_GAME_PROFILE_ID, VP_GAME_PROFILE_BUTTON,(uint8_t*)&input,1);
+}
+// void next_action(){
+// 	if(select_intdex == NAME_MAX){
+// 		SCREEN_TRAN(scr_home_handle, &scr_home);
+// 	}else{
+// 		select_intdex ++;
+// 	}
+// }
 
 void scr_naming_handle(ak_msg_t *msg) {
 	switch (msg->sig) {
 	case SCREEN_ENTRY: {
+		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_NAMING_UPDATE, AC_DISPLAY_EGG_INTERVAL, TIMER_PERIODIC);
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
-        timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_HOME, AC_DISPLAY_STARTUP_INTERVAL, TIMER_ONE_SHOT);
 	} break;
-
-    case AC_DISPLAY_SHOW_HOME:{
-		APP_DBG_SIG("AC_DISPLAY_SHOW_HOME\n");
-		SCREEN_TRAN(scr_home_handle, &scr_home);
+	case AC_DISPLAY_NAMING_UPDATE:{
+		task_post_pure_msg(VP_GAME_PROFILE_ID, VP_GAME_PROFILE_TICK);
+	}break;
+	case AC_DISPLAY_BUTTON_UP_PRESSED:{
+		name_button_action(0);
+	}break;
+	case AC_DISPLAY_BUTTON_DOWN_PRESSED:{
+		name_button_action(1);
+	}break;
+	case AC_DISPLAY_BUTTON_MODE_PRESSED:{
+		if((name_index + 1) == NAME_LEN){
+			SCREEN_TRAN(scr_home_handle, &scr_home);
+		}else{
+			name_button_action(2);
+		}
 	}break;
 
 	default:

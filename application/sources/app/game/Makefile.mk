@@ -11,3 +11,4 @@ SOURCES_CPP += sources/app/game/poop.cpp
 SOURCES_CPP += sources/app/game/clean.cpp
 SOURCES_CPP += sources/app/game/required_box.cpp
 SOURCES_CPP += sources/app/game/fire_ball.cpp
+SOURCES_CPP += sources/app/game/pet_profile.cpp

@@ -33,6 +33,7 @@ void scr_splash_handle(ak_msg_t *msg) {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
 		task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_SETUP);
+		task_post_pure_msg(VP_GAME_PROFILE_ID, VP_GAME_PROFILE_SETUP);
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_HOME, AC_DISPLAY_STARTUP_INTERVAL, TIMER_ONE_SHOT);
 	} break;
 	case AC_DISPLAY_SHOW_HOME:{

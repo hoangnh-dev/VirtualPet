@@ -201,6 +201,7 @@ enum {
 	AC_DISPLAY_SHOW_BOX,
 	AC_DISPLAY_TRAIN_TIME_TICK,
 	AC_DISPLAY_TRAIN_FINISH,
+	AC_DISPLAY_NAMING_UPDATE,
 };
 /*****************************************************************************/
 /*  VirtualPet game 'PET' task define
@@ -260,10 +261,6 @@ enum {
 	VP_GAME_FIRE_START,
 };
 /*****************************************************************************/
-/*  app function declare
- */
-/*****************************************************************************/
-/*****************************************************************************/
 /*  VirtualPet game 'TRAINING' task define
  */
 /*****************************************************************************/
@@ -274,6 +271,17 @@ enum {
 	VP_GAME_BOX_TICK,
 	VP_GAME_BOX_TIME_TICK,
 	VP_GAME_BOX_TAP,
+};
+/*****************************************************************************/
+/*  VirtualPet game 'PROFILE' task define
+ */
+/*****************************************************************************/
+/* define timer */
+/* define signal */
+enum {
+	VP_GAME_PROFILE_SETUP,
+	VP_GAME_PROFILE_TICK,
+	VP_GAME_PROFILE_BUTTON,
 };
 /*****************************************************************************/
 /*  app function declare
