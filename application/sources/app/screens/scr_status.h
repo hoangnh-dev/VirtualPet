@@ -6,7 +6,7 @@
 
 typedef struct {
     const char *label;
-    char value[10];
+    char value[15];
 } status_t;
 
 

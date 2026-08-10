@@ -282,6 +282,8 @@ enum {
 	VP_GAME_PROFILE_SETUP,
 	VP_GAME_PROFILE_TICK,
 	VP_GAME_PROFILE_BUTTON,
+	VP_GAME_PROFILE_AGE,
+	VP_GAME_PROFILE_POWER,
 };
 /*****************************************************************************/
 /*  app function declare

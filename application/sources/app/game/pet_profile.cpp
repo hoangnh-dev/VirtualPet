@@ -4,11 +4,16 @@
 #define BASIC_WEIGHT          (2)
 #define CHAR_TABLE_LEN        (26)
 
-enum {
+typedef enum {
     CHAR_UP = 0,
     CHAR_DOWN,
-    CHAR_NEXT,        
-};
+    CHAR_NEXT,
+} button_action_t;
+
+typedef enum {
+    STAT_WEIGHT = 0,
+    STAT_HEIGHT,
+} stat_type_t;
 
 const char char_table[] = "abcdefghijklmnopqrstuvwxyz";
 uint8_t char_index = 0;
@@ -28,6 +33,7 @@ void pet_profile_setup(){
     profile.height = BASIC_HEIGHT;
     profile.age = 0;
     profile.power = 0;
+    
     pet_profile_update_name();
 }
 
@@ -47,7 +53,7 @@ void pet_profile_char_next(){
     pet_profile_update_name();
 }
 
-void pet_profile_scroll_char(uint8_t direction){
+void pet_profile_scroll_char(button_action_t direction){
     switch (direction){
         case CHAR_UP:{
             pet_profile_char_up();
@@ -62,6 +68,20 @@ void pet_profile_scroll_char(uint8_t direction){
 		break;
     }
 }
+void set_weight(){
+    profile.weight = BASIC_WEIGHT + (profile.age/5);
+}
+void set_height(){
+    profile.height = BASIC_HEIGHT + (profile.age/10);
+}
+void set_age(){
+    profile.age ++;
+    set_height();
+    set_weight();
+}
+void set_power(uint8_t point){
+    profile.power += point;
+}
 void profile_task_handle(ak_msg_t *msg){
     switch (msg->sig) {
         case VP_GAME_PROFILE_SETUP:{
@@ -71,9 +91,17 @@ void profile_task_handle(ak_msg_t *msg){
             pet_profile_update_name();
         } break;
         case VP_GAME_PROFILE_BUTTON:{
-            uint8_t button;
+            button_action_t button;
             memcpy(&button, get_data_common_msg(msg), 1);
             pet_profile_scroll_char(button);
+        } break;
+        case VP_GAME_PROFILE_AGE:{
+            set_age();
+        } break;
+        case VP_GAME_PROFILE_POWER:{
+            uint8_t point;
+            memcpy(&point, get_data_common_msg(msg), sizeof(point));
+            set_power(point);
         } break;
         default:
 		break;

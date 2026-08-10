@@ -71,6 +71,7 @@ void scr_training_handle(ak_msg_t *msg) {
         pet.action = PET_ACTION_IDLE;
 		timer_remove_attr(AC_TASK_DISPLAY_ID,AC_DISPLAY_SHOW_BOX);
 		timer_remove_attr(AC_TASK_DISPLAY_ID,AC_DISPLAY_TRAIN_TIME_TICK);
+        task_post_common_msg(VP_GAME_PROFILE_ID, VP_GAME_PROFILE_POWER,(uint8_t*)&box.game_score,sizeof(box.game_score));
         SCREEN_TRAN(scr_home_handle, &scr_home);
 	} break;
 	default:

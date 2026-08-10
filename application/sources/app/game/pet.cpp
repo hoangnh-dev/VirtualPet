@@ -167,6 +167,9 @@ void pet_time(){
     if(pet.type == PET_TYPE_EGG && pet.time.life_time >= EGG_HATCH_TIME){
         pet.event = PET_EVENT_HATCH;
     }
+    if (pet.type != PET_TYPE_EGG && pet.time.life_time % 10 == 0){
+        task_post_pure_msg(VP_GAME_PROFILE_ID, VP_GAME_PROFILE_AGE);
+    }
 
     pet_satiety_reduce();
     pet_health_reduce();
