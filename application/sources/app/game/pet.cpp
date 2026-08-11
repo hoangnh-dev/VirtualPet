@@ -137,27 +137,26 @@ void pet_update(){
         pet_animation_update();
     }
 }
-void pet_check_poop(){
-    if (pet.poop == 100){
-        pet.action = PET_ACTION_ANNOY;
-        pet.poop = 0;
-        task_post_pure_msg(VP_GAME_POOP_ID, VP_GAME_POOP_SETUP);
-        return;
-    }
-    pet.poop ++;
+void pet_set_poop(){
+    pet.action = PET_ACTION_ANNOY;
+    pet.poop = 0;
+    task_post_pure_msg(VP_GAME_POOP_ID, VP_GAME_POOP_SETUP);
 }
 void pet_satiety_reduce(){
-    if (pet.type == PET_TYPE_EGG || pet.satiety == 0) {
+    if (pet.type == PET_TYPE_EGG || pet.satiety == 0 || pet.action == PET_ACTION_EAT) {
         return;
     }
 
     if (pet_check_time(&pet.time.food_time, PET_EAT_TIME)) {
         pet.satiety--;
-        pet_check_poop();
+        pet.poop ++;
+        if (pet.poop == 100){
+            pet_set_poop();
+        }
     }
 }
 void pet_health_reduce(){
-    if (pet.type == PET_TYPE_EGG || pet.health == 0) {
+    if (pet.type == PET_TYPE_EGG || pet.health == 0 || pet.action == PET_ACTION_SLEEP) {
         return;
     }
 
