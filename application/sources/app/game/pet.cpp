@@ -6,17 +6,21 @@
 
 pet_t pet;
 uint8_t pet_reset = 0;
+bool is_setup = false;
 
 void pet_set_frame(const sprite_frame_t *frame){
     pet.current_frame = *frame; 
 }
 
 void pet_setup(){
-    pet.type = PET_TYPE_EGG;
-    pet_set_frame(&egg_frames[0]);
     pet.animation_check = 0;
     pet.action = PET_ACTION_IDLE;
     pet.event = PET_EVENT_NONE;
+
+    if (is_setup) return;
+
+    pet.type = PET_TYPE_EGG;
+    pet_set_frame(&egg_frames[0]);
     pet.satiety = 0;
     pet.health = 0;
     pet.poop = 0;

@@ -6,6 +6,7 @@ typedef enum {
 	SLEEPING,
     TRAINING,
 	STATUS,
+	SAVE,
     BACK,
     MENU_COUNT          
 } menu_item_t;
@@ -16,6 +17,7 @@ static const char *menu_items[] = {
 	[SLEEPING] = "Sleeping",
     [TRAINING] = "Training",
 	[STATUS]   = "Status",
+	[SAVE]     = "SAVE",
     [BACK]     = "Back"
 };
 static void view_scr_menu();
@@ -81,6 +83,12 @@ void scr_menu_select_items(){
             break;
 		case STATUS:
             SCREEN_TRAN(scr_status_handle, &scr_status);
+        	break;
+		case SAVE:
+			if (pet_manager_save_game()){
+				APP_DBG_SIG("SAVE SUCCESS\n");
+			}
+            SCREEN_TRAN(scr_home_handle, &scr_home);
         	break;
         case BACK:
 			menu_index = EATING;

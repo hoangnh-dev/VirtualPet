@@ -59,7 +59,7 @@ typedef struct {
     bool visible;
     uint8_t animation_check;
     uint8_t satiety;
-    uint8_t health = 0;
+    uint8_t health;
     uint8_t poop;
     pet_time_t time;
     pet_action_t action;
@@ -78,6 +78,20 @@ typedef struct {
     uint16_t power;
 } pet_profile_t;
 
+// PET DATA SAVE
+typedef struct {
+    pet_type_t type;
+    uint8_t satiety;
+    uint8_t health;
+    uint8_t poop;
+    pet_time_t time;
+} pet_save_t;
+typedef struct {
+	uint32_t magic_number;
+	pet_profile_t data_profile;
+    pet_save_t data_pet;
+	uint8_t check_sum;
+} vp_game_eeprom_t;
 /* ========================================================================== */
 /*                               3. TRAINING BOX                              */
 /* ========================================================================== */

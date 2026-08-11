@@ -32,13 +32,21 @@ void scr_splash_handle(ak_msg_t *msg) {
 	case SCREEN_ENTRY: {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
+		if (pet_manager_load_game()) {
+			timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_HOME, AC_DISPLAY_STARTUP_INTERVAL, TIMER_ONE_SHOT);
+		}else{
+			timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_NAMING, AC_DISPLAY_STARTUP_INTERVAL, TIMER_ONE_SHOT);
+		}
 		task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_SETUP);
 		task_post_pure_msg(VP_GAME_PROFILE_ID, VP_GAME_PROFILE_SETUP);
-		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_HOME, AC_DISPLAY_STARTUP_INTERVAL, TIMER_ONE_SHOT);
+		
 	} break;
 	case AC_DISPLAY_SHOW_HOME:{
 		APP_DBG_SIG("AC_DISPLAY_SHOW_HOME\n");
-		// SCREEN_TRAN(scr_home_handle, &scr_home);
+		SCREEN_TRAN(scr_home_handle, &scr_home);
+	}break;
+	case AC_DISPLAY_SHOW_NAMING:{
+		APP_DBG_SIG("AC_DISPLAY_SHOW_NAMING\n");
 		SCREEN_TRAN(scr_naming_handle, &scr_naming);
 	}break;
 

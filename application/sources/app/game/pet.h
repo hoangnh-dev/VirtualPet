@@ -9,6 +9,7 @@
 
 const sprite_frame_t *pet_sleep_effect_get_frame();
 extern pet_t pet;
+extern bool is_setup;
 
 void pet_setup();
 void pet_update();

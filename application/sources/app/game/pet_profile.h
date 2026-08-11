@@ -8,6 +8,7 @@
 
 #include "screens_bitmap.h"
 #include "common.h"
+#include "pet_manager.h"
 
 extern pet_profile_t profile;
 extern uint8_t name_index;
