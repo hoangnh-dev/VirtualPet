@@ -34,18 +34,10 @@ void view_scr_naming() {
 void name_button_action(uint8_t input){
 	task_post_common_msg(VP_GAME_PROFILE_ID, VP_GAME_PROFILE_BUTTON,(uint8_t*)&input,1);
 }
-// void next_action(){
-// 	if(select_intdex == NAME_MAX){
-// 		SCREEN_TRAN(scr_home_handle, &scr_home);
-// 	}else{
-// 		select_intdex ++;
-// 	}
-// }
-
 void scr_naming_handle(ak_msg_t *msg) {
 	switch (msg->sig) {
 	case SCREEN_ENTRY: {
-		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_NAMING_UPDATE, AC_DISPLAY_EGG_INTERVAL, TIMER_PERIODIC);
+		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_NAMING_UPDATE, AC_DISPLAY_GAME_TICK_INTERVAL, TIMER_PERIODIC);
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
 	} break;
 	case AC_DISPLAY_NAMING_UPDATE:{

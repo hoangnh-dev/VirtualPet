@@ -189,14 +189,14 @@ enum {
  */
 /*****************************************************************************/
 /* define timer */
-#define AC_DISPLAY_EGG_INTERVAL									    (500)
+#define AC_DISPLAY_GAME_TICK_INTERVAL							    (500)
 #define AC_DISPLAY_PET_TIME_TICK_INTERVAL						    (1000)
 #define AC_DISPLAY_BOX_TIME_TICK_INTERVAL						    (61000)
 /* define signal */
 enum {
 	AC_DISPLAY_SHOW_HOME,
 	AC_DISPLAY_SHOW_NAMING,
-	AC_DISPLAY_SHOW_EGG,
+	AC_DISPLAY_GAME_TICK,
 	AC_DISPLAY_PET_TIME_TICK,
 	AC_DISPLAY_SHOW_LOGO,
 	AC_DISPLAY_SHOW_BOX,
