@@ -6,7 +6,7 @@
 #define FIRE_W          (15)
 #define FIRE_HE         (11)
 
-fire_ball_t fire[MAX_FIRE];
+sprite_item_t fire[MAX_FIRE];
 uint8_t fire_index = 0;
 
 const uint8_t *const fire_bitmaps[2] = {
@@ -25,7 +25,7 @@ void fire_setup(){
     }
 }
 
-void fire_update_bitmap(fire_ball_t * fire_ball){
+void fire_update_bitmap(sprite_item_t* fire_ball){
     if(fire_ball->current_frame.x >= 128){
         fire_ball->visible = false;
         return;

@@ -6,7 +6,7 @@
 #define POOP_W          (27)
 #define POOP_HE         (24)
 
-poop_t poop;
+sprite_item_t poop;
 
 const uint8_t *const poop_bitmaps[2] = {
     bitmap_poop_1,

@@ -6,7 +6,7 @@
 #define FOOD_W          (21)
 #define FOOD_HE         (21)
 
-food_t food;
+sprite_item_t food;
 
 const uint8_t *const food_bitmaps[4] = {
     bitmap_food_1,

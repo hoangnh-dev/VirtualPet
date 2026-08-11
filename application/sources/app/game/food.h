@@ -6,13 +6,7 @@
 #include "common.h"
 #include "screens_bitmap.h"
 
-typedef struct {
-    bool visible = false;
-    uint8_t frame_index;
-    sprite_frame_t current_frame;
-} food_t;
-
-extern food_t food;
+extern sprite_item_t food;
 
 void food_update(void);
 

@@ -9,13 +9,7 @@
 
 #define MAX_FIRE        (5)
 
-typedef struct {
-    bool visible = false;
-    uint8_t frame_index;
-    sprite_frame_t current_frame;
-} fire_ball_t;
-
-extern fire_ball_t fire[MAX_FIRE];
+extern sprite_item_t fire[MAX_FIRE];
 
 void fire_bal_update(void);
 

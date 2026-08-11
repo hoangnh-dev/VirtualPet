@@ -6,7 +6,7 @@
 #define CLEAN_W          (18)
 #define CLEAN_HE         (48)
 
-clean_t clean;
+sprite_item_t clean;
 
 void clean_setup(){
     clean.current_frame.x = CLEAN_X;
