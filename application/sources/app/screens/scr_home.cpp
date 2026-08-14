@@ -80,8 +80,8 @@ void scr_home_handle(ak_msg_t *msg) {
 	}break;
 	case AC_DISPLAY_GAME_TICK:{
 		task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_TICK);
-		task_post_pure_msg(VP_GAME_POOP_ID, VP_GAME_POOP_TICK);
-		task_post_pure_msg(VP_GAME_CLEAN_ID, VP_GAME_CLEAN_TICK);
+		if (poop.visible) task_post_pure_msg(VP_GAME_POOP_ID, VP_GAME_POOP_TICK);
+		if (clean.visible) task_post_pure_msg(VP_GAME_CLEAN_ID, VP_GAME_CLEAN_TICK);
 	} break;
 	case AC_DISPLAY_PET_TIME_TICK:{
 		task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_TIME);
