@@ -61,6 +61,16 @@ void view_scr_menu() {
 		WHITE);
 	scr_menu_show_items();
 }
+void menu_to_training(){
+	if(pet.health < 30) {
+		SCREEN_TRAN(scr_home_handle, &scr_home);
+		return;
+	}
+	task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_TRAIN);
+	task_post_pure_msg(VP_GAME_BOX_ID, VP_GAME_BOX_SETUP);
+	task_post_pure_msg(VP_GAME_FIRE_ID, VP_GAME_FIRE_SETUP);
+    SCREEN_TRAN(scr_training_handle, &scr_training);
+}
 void scr_menu_select_items(){
 	switch (menu_index) {
         case EATING:
@@ -76,10 +86,7 @@ void scr_menu_select_items(){
 			SCREEN_TRAN(scr_home_handle, &scr_home);
             break;
         case TRAINING:
-			task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_TRAIN);
-			task_post_pure_msg(VP_GAME_BOX_ID, VP_GAME_BOX_SETUP);
-			task_post_pure_msg(VP_GAME_FIRE_ID, VP_GAME_FIRE_SETUP);
-            SCREEN_TRAN(scr_training_handle, &scr_training);
+			menu_to_training();
             break;
 		case STATUS:
             SCREEN_TRAN(scr_status_handle, &scr_status);
