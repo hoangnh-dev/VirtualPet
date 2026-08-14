@@ -17,8 +17,17 @@ static const char *menu_items[] = {
 	[SLEEPING] = "Sleeping",
     [TRAINING] = "Training",
 	[STATUS]   = "Status",
-	[SAVE]     = "SAVE",
+	[SAVE]     = "Save",
     [BACK]     = "Back"
+};
+static const int16_t menu_x[] = {
+    [EATING]   = 30,
+    [CLEANING] = 15,
+    [SLEEPING] = 15,
+    [TRAINING] = 15,
+    [STATUS]   = 30,
+    [SAVE]     = 40,
+    [BACK]     = 40,
 };
 static void view_scr_menu();
 static uint8_t menu_index = EATING; //current index
@@ -39,21 +48,21 @@ view_screen_t scr_menu = {
 };
 
 void scr_menu_show_items(){
-	view_render.fillRect(48,25,6,8,BLACK);
-	view_render.setCursor(48,25);
+	view_render.setTextSize (2);
+	view_render.setCursor(menu_x[menu_index],25);
 	view_render.print(menu_items[menu_index]);
 }
 
 void view_scr_menu() {
     view_render.clear();
-	view_render.drawBitmap(	58, \
+	view_render.drawBitmap(	56, \
 		0, \
 		bitmap_arrow_up, \
 		16, \
 		9, \
 		WHITE);
 
-	view_render.drawBitmap(	58, \
+	view_render.drawBitmap(	56, \
 		55, \
 		bitmap_arrow_down, \
 		16, \
