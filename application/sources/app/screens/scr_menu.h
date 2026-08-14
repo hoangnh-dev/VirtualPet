@@ -3,5 +3,6 @@
 
 #include "screens.h"
 #include "pet_manager.h"
+#include "poop.h"
 
 #endif // SCR_MENU_H

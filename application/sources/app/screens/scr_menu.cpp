@@ -68,7 +68,7 @@ void scr_menu_select_items(){
 			SCREEN_TRAN(scr_home_handle, &scr_home);
             break;
         case CLEANING:
-            task_post_pure_msg(VP_GAME_CLEAN_ID, VP_GAME_CLEAN_SETUP);
+			if (poop.visible) task_post_pure_msg(VP_GAME_CLEAN_ID, VP_GAME_CLEAN_SETUP);
 			SCREEN_TRAN(scr_home_handle, &scr_home);
             break;
 		case SLEEPING:
