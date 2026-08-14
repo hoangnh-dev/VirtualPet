@@ -38,7 +38,7 @@ void poop_task_handle(ak_msg_t *msg){
         break;
         case VP_GAME_POOP_CLEAN:{
             poop.visible = false;
-            reason_t reason = PET_CLEANED;
+            pet_finish_t reason = PET_FINISH_CLEAN;
             task_post_common_msg(VP_GAME_PET_ID, VP_GAME_PET_FINISH,(uint8_t*)&reason,sizeof(reason));
         }break;
         default:

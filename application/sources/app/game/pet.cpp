@@ -199,12 +199,29 @@ void pet_train(){
     pet.action = PET_ACTION_TRAIN;
     pet.animation_check = 0;
 }
+void pet_finish(pet_finish_t reason){
+    switch (reason) {
+        case PET_FINISH_EAT:{
+            pet.satiety = 100;
+            pet_time_update(&pet.time.food_time);
+        }break;
+
+        case PET_FINISH_TRAIN:{
+            if (pet.health >= 30) pet.health -= 30;
+        }break;
+        case PET_FINISH_SLEEP:
+        case PET_FINISH_CLEAN:
+        default:break;
+    }
+            
+}
 const sprite_frame_t *pet_sleep_effect_get_frame(){
     return &pet_sleep_effect_frame;
 }
 bool pet_check_free(){
     return (pet.action == PET_ACTION_IDLE || pet.action == PET_ACTION_ANNOY);
 }
+
 
 void pet_task_handle(ak_msg_t *msg)
 {
@@ -234,12 +251,10 @@ void pet_task_handle(ak_msg_t *msg)
         }
         break;
         case VP_GAME_PET_FINISH:{
-            reason_t reason;
+            pet_finish_t reason;
             memcpy(&reason, get_data_common_msg(msg), sizeof(reason));
             pet.action = PET_ACTION_HAPPY;
-            if (reason == PET_CLEANED) return;
-            pet.satiety = 100;
-            pet_time_update(&pet.time.food_time);
+            pet_finish(reason);
         }
         break;
         

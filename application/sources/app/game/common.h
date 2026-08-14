@@ -18,9 +18,11 @@ typedef struct {
 } sprite_item_t;
 
 typedef enum {
-    PET_EAT = 0,
-    PET_CLEANED,
-}reason_t;
+    PET_FINISH_EAT = 0,
+    PET_FINISH_SLEEP,
+    PET_FINISH_CLEAN,
+    PET_FINISH_TRAIN,
+}pet_finish_t;
 
 /* ========================================================================== */
 /*                               2. PET TYPES                                 */
