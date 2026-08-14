@@ -14,5 +14,6 @@ extern bool is_setup;
 void pet_setup();
 void pet_update();
 void pet_time();
+bool pet_check_free();
 
 #endif // SCR_PET_H

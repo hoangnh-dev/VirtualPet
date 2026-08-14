@@ -180,7 +180,7 @@ void pet_time(){
 }
 void pet_eating(){
     pet.animation_check = 0;
-    if(pet.satiety < 100){
+    if(pet.satiety < 100 && pet.action == PET_ACTION_IDLE){
         pet.action = PET_ACTION_EAT;
         task_post_pure_msg(VP_GAME_FOOD_ID, VP_GAME_FOOD_SETUP);
     }else {
@@ -189,7 +189,7 @@ void pet_eating(){
 }
 void pet_sleep(){
     pet.animation_check = 0;
-     if(pet.health < 100){
+     if(pet.health < 100 && pet.action == PET_ACTION_IDLE){
         pet.action = PET_ACTION_SLEEP;
      }else {
         pet.action = PET_ACTION_DISLIKE;
@@ -201,6 +201,9 @@ void pet_train(){
 }
 const sprite_frame_t *pet_sleep_effect_get_frame(){
     return &pet_sleep_effect_frame;
+}
+bool pet_check_free(){
+    return (pet.action == PET_ACTION_IDLE || pet.action == PET_ACTION_ANNOY);
 }
 
 void pet_task_handle(ak_msg_t *msg)

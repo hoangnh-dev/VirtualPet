@@ -73,7 +73,7 @@ void scr_home_handle(ak_msg_t *msg) {
 		 
 	case AC_DISPLAY_BUTTON_UP_PRESSED:
 	case AC_DISPLAY_BUTTON_DOWN_PRESSED:{
-		if(pet.action != PET_ACTION_IDLE) return;
+		if(!pet_check_free()) return;
 		timer_remove_attr(AC_TASK_DISPLAY_ID,AC_DISPLAY_GAME_TICK);
 		timer_remove_attr(AC_TASK_DISPLAY_ID,AC_DISPLAY_PET_TIME_TICK);
 		SCREEN_TRAN(scr_menu_handle, &scr_menu);
