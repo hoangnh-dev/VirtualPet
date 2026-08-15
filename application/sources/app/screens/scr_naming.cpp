@@ -44,12 +44,15 @@ void scr_naming_handle(ak_msg_t *msg) {
 		task_post_pure_msg(VP_GAME_PROFILE_ID, VP_GAME_PROFILE_TICK);
 	}break;
 	case AC_DISPLAY_BUTTON_UP_PRESSED:{
+		BUZZER_PlaySound(BUZZER_SOUND_CLICK);
 		name_button_action(0);
 	}break;
 	case AC_DISPLAY_BUTTON_DOWN_PRESSED:{
+		BUZZER_PlaySound(BUZZER_SOUND_CLICK);
 		name_button_action(1);
 	}break;
 	case AC_DISPLAY_BUTTON_MODE_PRESSED:{
+		BUZZER_PlaySound(BUZZER_SOUND_CLICK);
 		if((name_index + 1) == NAME_LEN){
 			timer_remove_attr(AC_TASK_DISPLAY_ID,AC_DISPLAY_NAMING_UPDATE);
 			SCREEN_TRAN(scr_home_handle, &scr_home);

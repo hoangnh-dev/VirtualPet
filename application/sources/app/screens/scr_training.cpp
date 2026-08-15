@@ -64,7 +64,7 @@ void scr_training_handle(ak_msg_t *msg) {
 		APP_DBG_SIG("SCREEN_ENTRY\n");
         timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_BOX, AC_DISPLAY_GAME_TICK_INTERVAL, TIMER_PERIODIC);
         timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_TRAIN_TIME_TICK, AC_DISPLAY_PET_TIME_TICK_INTERVAL, TIMER_PERIODIC);
-		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
+		BUZZER_PlaySound(BUZZER_SOUND_LETS_GO);
 	} break;
     case AC_DISPLAY_SHOW_BOX: {
 		task_post_pure_msg(VP_GAME_BOX_ID, VP_GAME_BOX_TICK);
@@ -75,11 +75,13 @@ void scr_training_handle(ak_msg_t *msg) {
         task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_TICK);
 	} break;
     case AC_DISPLAY_BUTTON_UP_PRESSED:{
+        BUZZER_PlaySound(BUZZER_SOUND_CLICK);
         uint8_t input = 0;
         task_post_common_msg(VP_GAME_BOX_ID, VP_GAME_BOX_TAP,(uint8_t*)&input,1);
         break;
 	}
 	case AC_DISPLAY_BUTTON_DOWN_PRESSED:{
+        BUZZER_PlaySound(BUZZER_SOUND_CLICK);
         uint8_t input = 1;
         task_post_common_msg(VP_GAME_BOX_ID, VP_GAME_BOX_TAP,(uint8_t*)&input,1);
         break;

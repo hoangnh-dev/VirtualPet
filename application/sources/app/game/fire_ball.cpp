@@ -58,6 +58,7 @@ void fire_task_handle(ak_msg_t *msg){
             fire_update();
         break;
         case VP_GAME_FIRE_START:
+            BUZZER_PlaySound(BUZZER_SOUND_BANG);
             fire_start();
         break;
         default:

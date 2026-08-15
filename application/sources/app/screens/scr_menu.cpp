@@ -127,10 +127,12 @@ void scr_menu_handle(ak_msg_t *msg) {
 		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
 	} break;
 	case AC_DISPLAY_BUTTON_UP_PRESSED:{
+		BUZZER_PlaySound(BUZZER_SOUND_CLICK);
 		menu_index = (menu_index == 0) ? (MENU_COUNT - 1) : (menu_index - 1);
 		scr_menu_show_items();
 	}break;
 	case AC_DISPLAY_BUTTON_DOWN_PRESSED:{
+		BUZZER_PlaySound(BUZZER_SOUND_CLICK);
 		menu_index = (menu_index + 1) % MENU_COUNT;
 		scr_menu_show_items();
 	}break;
