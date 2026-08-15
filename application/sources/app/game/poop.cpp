@@ -1,5 +1,4 @@
 #include "poop.h"
-#include "task_list.h"
 
 #define POOP_X          (80)
 #define POOP_Y          (20)

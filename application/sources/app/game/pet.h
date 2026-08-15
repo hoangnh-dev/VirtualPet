@@ -1,10 +1,6 @@
 #ifndef SCR_PET_H
 #define SCR_PET_H
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdint.h>
 
-#include "screens_bitmap.h"
 #include "common.h"
 
 const sprite_frame_t *pet_sleep_effect_get_frame();

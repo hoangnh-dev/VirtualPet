@@ -33,7 +33,6 @@ bool pet_manager_save_game() {
     packet.data_pet.satiety = pet.satiety;
     packet.data_pet.health = pet.health;
     packet.data_pet.poop = pet.poop;
-    packet.data_pet.type = pet.type;
     packet.data_pet.time = pet.time;
 
     pet_eeprom_update_checksum(&packet.magic_number, &packet.check_sum, PET_SAVE_CHECKSUM_SIZE);
@@ -56,7 +55,6 @@ bool pet_manager_load_game() {
     pet.satiety = packet.data_pet.satiety;
     pet.health = packet.data_pet.health;
     pet.poop  = packet.data_pet.poop;
-    pet.type = packet.data_pet.type;
     pet.time = packet.data_pet.time;
     is_setup = true;
     return true;

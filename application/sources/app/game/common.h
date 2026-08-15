@@ -3,6 +3,11 @@
 
 #include "task_list.h"
 #include <stdint.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <cstring>
+#include "screens_bitmap.h"
+#include "task_list.h"
 /* ========================================================================== */
 /*                            1. UTILITY TYPES                                */
 /* ========================================================================== */

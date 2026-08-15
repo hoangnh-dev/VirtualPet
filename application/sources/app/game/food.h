@@ -1,8 +1,6 @@
 #ifndef FOOD_H
 #define FOOD_H
 
-#include <stdbool.h>
-#include <stdint.h>
 #include "common.h"
 #include "screens_bitmap.h"
 

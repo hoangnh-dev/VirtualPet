@@ -27,7 +27,7 @@ void scr_training_box_display(){
     if (!box.visible) return;
 
     for (uint8_t i = 0; i < box.count; i++) {
-        raw_spritet(&box.current_frame[i]);
+        draw_spritet(&box.current_frame[i]);
     }
 }
 void scr_training_fire_ball_display(){

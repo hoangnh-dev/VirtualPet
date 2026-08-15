@@ -1,6 +1,5 @@
 #include "pet_frames.h"
 #include "pet_config.h"
-#include "screens_bitmap.h"
 
 const sprite_frame_t egg_frames[2] = {
     { EGG_X, EGG_Y, EGG_W, EGG_MAX_H, bitmap_egg_1 },
