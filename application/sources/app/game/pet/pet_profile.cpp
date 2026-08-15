@@ -67,6 +67,7 @@ void pet_profile_scroll_char(button_action_t direction){
 		break;
     }
     pet_profile_update_name();
+    task_post_pure_msg(AC_TASK_DISPLAY_ID, AC_DISPLAY_NAMING_UPDATE);
 }
 void set_weight(){
     profile.weight = BASIC_WEIGHT + (profile.age/5);
@@ -87,9 +88,7 @@ void profile_task_handle(ak_msg_t *msg){
         case VP_GAME_PROFILE_SETUP:{
             pet_profile_setup();
         } break;
-        case VP_GAME_PROFILE_TICK:{
-            pet_profile_update_name();
-        } break;
+
         case VP_GAME_PROFILE_BUTTON:{
             button_action_t button;
             memcpy(&button, get_data_common_msg(msg), 1);

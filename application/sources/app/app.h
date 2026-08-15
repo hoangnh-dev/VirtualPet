@@ -191,7 +191,6 @@ enum {
 /* define timer */
 #define AC_DISPLAY_GAME_TICK_INTERVAL							    (500)
 #define AC_DISPLAY_PET_TIME_TICK_INTERVAL						    (1000)
-#define AC_DISPLAY_BOX_TIME_TICK_INTERVAL						    (61000)
 /* define signal */
 enum {
 	AC_DISPLAY_SHOW_HOME,
