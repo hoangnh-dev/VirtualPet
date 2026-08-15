@@ -72,6 +72,7 @@ void view_scr_menu() {
 }
 void menu_to_training(){
 	if(pet.health < 30) {
+		task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_REJECT);
 		SCREEN_TRAN(scr_home_handle, &scr_home);
 		return;
 	}
@@ -87,7 +88,11 @@ void scr_menu_select_items(){
 			SCREEN_TRAN(scr_home_handle, &scr_home);
             break;
         case CLEANING:
-			if (poop.visible) task_post_pure_msg(VP_GAME_CLEAN_ID, VP_GAME_CLEAN_SETUP);
+			if (poop.visible){
+				task_post_pure_msg(VP_GAME_CLEAN_ID, VP_GAME_CLEAN_SETUP);
+			} else {
+				task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_REJECT);
+			} 
 			SCREEN_TRAN(scr_home_handle, &scr_home);
             break;
 		case SLEEPING:

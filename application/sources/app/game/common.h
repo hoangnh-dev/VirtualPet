@@ -107,12 +107,6 @@ typedef struct {
 #define MAX_BOX        (4)
 #define MAX_TIME       (60)
 
-typedef enum {
-    BOX_RUNNING,        
-    BOX_CORRECT,   
-    BOX_WRONG     
-} box_state_t;
-
 typedef struct {
     bool visible = false;
     uint8_t count;

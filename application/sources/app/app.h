@@ -218,6 +218,7 @@ enum {
 	VP_GAME_PET_SLEEP,
 	VP_GAME_PET_TRAIN,
 	VP_GAME_PET_FINISH,
+	VP_GAME_PET_REJECT,
 };
 /*****************************************************************************/
 /*  VirtualPet game 'FOOD' task define

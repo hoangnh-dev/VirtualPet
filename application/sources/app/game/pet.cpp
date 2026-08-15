@@ -212,9 +212,13 @@ void pet_finish(pet_finish_t reason){
         case PET_FINISH_SLEEP:
         case PET_FINISH_CLEAN:
         default:break;
-    }
-            
+    }      
 }
+
+void pet_reject(){
+    pet.action = PET_ACTION_DISLIKE;
+};
+
 const sprite_frame_t *pet_sleep_effect_get_frame(){
     return &pet_sleep_effect_frame;
 }
@@ -248,6 +252,10 @@ void pet_task_handle(ak_msg_t *msg)
         break;
         case VP_GAME_PET_TRAIN: {
             pet_train();
+        }
+        break;
+        case VP_GAME_PET_REJECT: {
+            pet_reject();
         }
         break;
         case VP_GAME_PET_FINISH:{
