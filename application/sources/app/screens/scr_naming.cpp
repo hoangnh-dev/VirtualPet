@@ -51,6 +51,7 @@ void scr_naming_handle(ak_msg_t *msg) {
 	}break;
 	case AC_DISPLAY_BUTTON_MODE_PRESSED:{
 		if((name_index + 1) == NAME_LEN){
+			timer_remove_attr(AC_TASK_DISPLAY_ID,AC_DISPLAY_NAMING_UPDATE);
 			SCREEN_TRAN(scr_home_handle, &scr_home);
 		}else{
 			name_button_action(2);

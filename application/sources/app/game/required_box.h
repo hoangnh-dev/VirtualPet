@@ -2,7 +2,6 @@
 #define REQUIRED_BOX_H
 
 #include "common.h"
-#include "screens_bitmap.h"
 
 extern required_box_t box;
 

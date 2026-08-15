@@ -50,7 +50,6 @@ void pet_profile_char_down(){
 void pet_profile_char_next(){
     name_index ++;
     char_index = 0;
-    pet_profile_update_name();
 }
 
 void pet_profile_scroll_char(button_action_t direction){
@@ -67,6 +66,7 @@ void pet_profile_scroll_char(button_action_t direction){
         default:
 		break;
     }
+    pet_profile_update_name();
 }
 void set_weight(){
     profile.weight = BASIC_WEIGHT + (profile.age/5);

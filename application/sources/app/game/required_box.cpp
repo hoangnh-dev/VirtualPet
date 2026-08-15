@@ -6,7 +6,6 @@
 #define BOX_H          (9)
 
 required_box_t box;
-box_state_t box_state;
 uint8_t count_correct;
 
 const uint8_t *const box_bitmaps[2] = {
@@ -28,7 +27,6 @@ void box_generate(){
 }
 
 void box_setup(){
-    box_state = BOX_RUNNING;
     box.count = 1;
     box.current_time = MAX_TIME;
     box.renew_time = 5;
@@ -54,23 +52,6 @@ void box_correct(){
 void box_wrong(){
     box.current_frame[count_correct].bitmap = bitmap_x_mark;
 }
-void box_update(){
-    switch (box_state) {
-        case BOX_RUNNING:
-            box_run();
-        break;
-        case BOX_CORRECT:
-            box_correct();
-            box_state = BOX_RUNNING;
-        break;
-        case BOX_WRONG:
-            box_wrong();
-            box_state = BOX_RUNNING;
-        break;
-        default:
-        break;
-    }
-}
 
 void time_update(){
     if(box.current_time > 0 ) box.current_time --;
@@ -86,9 +67,9 @@ bool box_check(uint8_t check){
 }
 void box_receiver(uint8_t button){
     if (box_check(button)){
-        box_state = BOX_CORRECT;
+        box_correct();
     }else {
-        box_state = BOX_WRONG;
+        box_wrong();
     }
 }
 
@@ -98,13 +79,12 @@ void box_task_handle(ak_msg_t *msg){
             box_setup();
         break;
         case VP_GAME_BOX_TICK:
-            box_update();
+            box_run();
         break;
         case VP_GAME_BOX_TIME_TICK:
             time_update();
         break;
         case VP_GAME_BOX_TAP:{
-            if (box_state != BOX_RUNNING) return;
             uint8_t button;
             memcpy(&button, get_data_common_msg(msg), 1);
             box_receiver(button);
