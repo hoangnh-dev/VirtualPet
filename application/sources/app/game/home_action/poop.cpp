@@ -25,12 +25,12 @@ void poop_update_bitmap(){
 
 void poop_task_handle(ak_msg_t *msg){
     switch (msg->sig) {
-        case VP_GAME_POOP_SETUP:
+        case VP_GAME_POOP_SETUP:{
             poop_setup();
-        break;
-        case VP_GAME_POOP_TICK:
+        }break;
+        case VP_GAME_POOP_TICK:{
             poop_update_bitmap();
-        break;
+        }break;
         case VP_GAME_POOP_CLEAN:{
             poop.visible = false;
             pet_finish_t reason = PET_FINISH_CLEAN;

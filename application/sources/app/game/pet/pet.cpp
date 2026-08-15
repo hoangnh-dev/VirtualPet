@@ -97,11 +97,13 @@ void child_update_bitmap(){
 }
 void pet_update_bitmap(){
     switch (pet.type) {
-        case PET_TYPE_EGG:
+        case PET_TYPE_EGG:{
             pet_set_frame(&egg_frames[pet.animation_check]);
-        break;
-        default:
+        }break;
+        case PET_TYPE_CHILD:{
             child_update_bitmap();
+        }break;
+        default:
         break;
     }
 }
@@ -121,13 +123,14 @@ void pet_evolve(){
 
 void pet_event_update(){
     switch (pet.event) {
-        case PET_EVENT_HATCH:
+        case PET_EVENT_HATCH:{
             pet_set_frame(&egg_hatch_frame);
             pet.event = PET_EVENT_EVOLVE;
+        }
         break;
-        case PET_EVENT_EVOLVE:
+        case PET_EVENT_EVOLVE:{
             pet_evolve();
-        break;
+        }break;
         default:
         break;
     }

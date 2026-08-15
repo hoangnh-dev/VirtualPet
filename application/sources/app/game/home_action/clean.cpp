@@ -26,12 +26,13 @@ void clean_update_bitmap(){
 
 void clean_task_handle(ak_msg_t *msg){
     switch (msg->sig) {
-        case VP_GAME_CLEAN_SETUP:
+        case VP_GAME_CLEAN_SETUP:{
             clean_setup();
+        }
         break;
-        case VP_GAME_CLEAN_TICK:
+        case VP_GAME_CLEAN_TICK:{
             clean_update_bitmap();
-        break;
+        }break;
         default:
         break;
     }

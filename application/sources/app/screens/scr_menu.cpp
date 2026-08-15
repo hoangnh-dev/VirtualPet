@@ -83,38 +83,38 @@ void menu_to_training(){
 }
 void scr_menu_select_items(){
 	switch (menu_index) {
-        case EATING:
-            task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_EAT);
+        case EATING:{
+			task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_EAT);
 			SCREEN_TRAN(scr_home_handle, &scr_home);
-            break;
-        case CLEANING:
+		}break;
+        case CLEANING:{
 			if (poop.visible){
 				task_post_pure_msg(VP_GAME_CLEAN_ID, VP_GAME_CLEAN_SETUP);
 			} else {
 				task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_REJECT);
 			} 
 			SCREEN_TRAN(scr_home_handle, &scr_home);
-            break;
-		case SLEEPING:
-           	task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_SLEEP);
+		}break;
+		case SLEEPING:{
+			task_post_pure_msg(VP_GAME_PET_ID, VP_GAME_PET_SLEEP);
 			SCREEN_TRAN(scr_home_handle, &scr_home);
-            break;
-        case TRAINING:
+		}break;
+        case TRAINING:{
 			menu_to_training();
-            break;
-		case STATUS:
-            SCREEN_TRAN(scr_status_handle, &scr_status);
-        	break;
-		case SAVE:
+		}break;
+		case STATUS:{
+			SCREEN_TRAN(scr_status_handle, &scr_status);
+		}break;
+		case SAVE:{
 			if (pet_manager_save_game()){
 				APP_DBG_SIG("SAVE SUCCESS\n");
 			}
             SCREEN_TRAN(scr_home_handle, &scr_home);
-        	break;
-        case BACK:
+		}break;
+        case BACK:{
 			menu_index = EATING;
             SCREEN_TRAN(scr_home_handle, &scr_home);
-            break;
+		}break;
         default:
             break;
     }

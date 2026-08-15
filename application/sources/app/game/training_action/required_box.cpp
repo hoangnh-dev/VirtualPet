@@ -71,15 +71,15 @@ void box_receiver(uint8_t button){
 
 void box_task_handle(ak_msg_t *msg){
     switch (msg->sig) {
-        case VP_GAME_BOX_SETUP:
+        case VP_GAME_BOX_SETUP:{
             box_setup();
-        break;
-        case VP_GAME_BOX_TICK:
+        }break;
+        case VP_GAME_BOX_TICK:{
             box_run();
-        break;
-        case VP_GAME_BOX_TIME_TICK:
+        }break;
+        case VP_GAME_BOX_TIME_TICK:{
             time_update();
-        break;
+        }break;
         case VP_GAME_BOX_TAP:{
             uint8_t button;
             memcpy(&button, get_data_common_msg(msg), 1);

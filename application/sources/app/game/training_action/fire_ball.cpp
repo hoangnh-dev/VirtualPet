@@ -46,16 +46,16 @@ void fire_start(){
 
 void fire_task_handle(ak_msg_t *msg){
     switch (msg->sig) {
-        case VP_GAME_FIRE_SETUP:
+        case VP_GAME_FIRE_SETUP:{
             fire_setup();
-        break;
-        case VP_GAME_FIRE_TICK:
+        }break;
+        case VP_GAME_FIRE_TICK:{
             fire_update();
-        break;
-        case VP_GAME_FIRE_START:
+        }break;
+        case VP_GAME_FIRE_START:{
             BUZZER_PlaySound(BUZZER_SOUND_BANG);
             fire_start();
-        break;
+        }break;
         default:
         break;
     }

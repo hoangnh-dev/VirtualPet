@@ -32,12 +32,12 @@ void food_update_bitmap(){
 
 void food_task_handle(ak_msg_t *msg){
     switch (msg->sig) {
-        case VP_GAME_FOOD_SETUP:
+        case VP_GAME_FOOD_SETUP:{
             food_setup();
-        break;
-        case VP_GAME_FOOD_TICK:
+        }break;
+        case VP_GAME_FOOD_TICK:{
             food_update_bitmap();
-        break;
+        }break;
         default:
         break;
     }
