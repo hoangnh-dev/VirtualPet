@@ -4,9 +4,10 @@
 #include <cstring>
 
 pet_t pet;
-uint8_t pet_reset = 0;
+uint8_t pet_reset_time = 0;
 bool is_setup = false;
 
+//  --------------Setup--------------
 void pet_set_frame(const sprite_frame_t *frame){
     pet.current_frame = *frame; 
 }
@@ -27,24 +28,27 @@ void pet_setup(){
     pet.time.life_time =  0;
     pet.time.food_time = 0;
 }
+void pet_reset(){
+    pet_reset_time ++;
+    if (pet_reset_time >= 5){
+        pet_reset_time = 0;
+        pet.action = PET_ACTION_IDLE;
+    }
+}
+
+//  --------------Time set--------------
 bool pet_check_time(uint32_t *last_time, uint32_t interval){
     if ((pet.time.life_time - *last_time) >= interval) {
         *last_time = pet.time.life_time;
         return true;
     }
-
     return false;
 }
 void pet_time_update(uint32_t *last_time){
     *last_time = pet.time.life_time;
 }
-void reset(){
-    pet_reset ++;
-    if (pet_reset >= 5){
-        pet_reset = 0;
-        pet.action = PET_ACTION_IDLE;
-    }
-}
+//  --------------Bitmmap set--------------
+
 void child_update_bitmap(){
     switch (pet.action) {
         case PET_ACTION_EAT:{
@@ -56,12 +60,12 @@ void child_update_bitmap(){
 
         case PET_ACTION_DISLIKE:{
             pet_set_frame(&child_dislike_frames[pet.animation_check]);
-            reset();
+            pet_reset();
         }break;
 
         case PET_ACTION_HAPPY:{
             pet_set_frame(&child_happy_frames[pet.animation_check]);
-            reset();
+            pet_reset();
         }break;
 
         case PET_ACTION_ANNOY:{
@@ -136,6 +140,9 @@ void pet_update(){
         pet_animation_update();
     }
 }
+
+//  --------------Pet Action--------------
+
 void pet_set_poop(){
     pet.action = PET_ACTION_ANNOY;
     pet.poop = 0;
@@ -163,20 +170,7 @@ void pet_health_reduce(){
         pet.health--;
     }
 }
-void pet_time(){
-    pet.time.life_time++;
 
-    if(pet.type == PET_TYPE_EGG && pet.time.life_time >= EGG_HATCH_TIME){
-        pet.event = PET_EVENT_HATCH;
-    }
-    if (pet.type != PET_TYPE_EGG && pet.time.life_time % 10 == 0){
-        task_post_pure_msg(VP_GAME_PROFILE_ID, VP_GAME_PROFILE_AGE);
-    }
-
-    pet_satiety_reduce();
-    pet_health_reduce();
-    
-}
 void pet_eating(){
     pet.animation_check = 0;
     if(pet.satiety < 100 && pet.action == PET_ACTION_IDLE){
@@ -199,6 +193,28 @@ void pet_train(){
     pet.animation_check = 0;
     pet_update_bitmap();
 }
+
+void pet_reject(){
+    pet.action = PET_ACTION_DISLIKE;
+};
+
+//  --------------Time tick--------------
+void pet_time(){
+    pet.time.life_time++;
+
+    if(pet.type == PET_TYPE_EGG && pet.time.life_time >= EGG_HATCH_TIME){
+        pet.event = PET_EVENT_HATCH;
+    }
+    if (pet.type != PET_TYPE_EGG && pet.time.life_time % 10 == 0){
+        task_post_pure_msg(VP_GAME_PROFILE_ID, VP_GAME_PROFILE_AGE);
+    }
+
+    pet_satiety_reduce();
+    pet_health_reduce();
+    
+}
+//  --------------Pet Msg--------------
+
 void pet_finish(pet_finish_t reason){
     switch (reason) {
         case PET_FINISH_EAT:{
@@ -214,18 +230,6 @@ void pet_finish(pet_finish_t reason){
         default:break;
     }      
 }
-
-void pet_reject(){
-    pet.action = PET_ACTION_DISLIKE;
-};
-
-const sprite_frame_t *pet_sleep_effect_get_frame(){
-    return &pet_sleep_effect_frame;
-}
-bool pet_check_free(){
-    return (pet.action == PET_ACTION_IDLE || pet.action == PET_ACTION_ANNOY);
-}
-
 
 void pet_task_handle(ak_msg_t *msg)
 {
@@ -269,4 +273,11 @@ void pet_task_handle(ak_msg_t *msg)
         default:
         break;
     }
+}
+//  --------------extension--------------
+const sprite_frame_t *pet_sleep_effect_get_frame(){
+    return &pet_sleep_effect_frame;
+}
+bool pet_check_free(){
+    return (pet.action == PET_ACTION_IDLE || pet.action == PET_ACTION_ANNOY);
 }

@@ -1,10 +1,5 @@
 #include "fire_ball.h"
-#include "task_list.h"
-
-#define FIRE_X          (45)
-#define FIRE_Y          (24)
-#define FIRE_W          (15)
-#define FIRE_HE         (11)
+#include "training_action_config.h"
 
 sprite_item_t fire[MAX_FIRE];
 uint8_t fire_index = 0;
@@ -27,12 +22,12 @@ void fire_setup(){
 }
 
 void fire_update_bitmap(sprite_item_t* fire_ball){
-    if(fire_ball->current_frame.x >= 128){
+    if(fire_ball->current_frame.x >= LCD_WIDTH){
         fire_ball->visible = false;
         return;
     }
     fire_ball->current_frame.x += 10;
-    fire_ball->frame_index ^= 1;
+    fire_ball->frame_index = !fire_ball->frame_index;
     fire_ball->current_frame.bitmap = fire_bitmaps[fire_ball->frame_index];
 }
 

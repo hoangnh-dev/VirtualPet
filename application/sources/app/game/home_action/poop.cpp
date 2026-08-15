@@ -1,9 +1,5 @@
 #include "poop.h"
-
-#define POOP_X          (80)
-#define POOP_Y          (20)
-#define POOP_W          (27)
-#define POOP_HE         (24)
+#include "home_action_config.h"
 
 sprite_item_t poop;
 

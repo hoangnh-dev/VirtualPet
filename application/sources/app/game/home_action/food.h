@@ -2,7 +2,6 @@
 #define FOOD_H
 
 #include "common.h"
-#include "screens_bitmap.h"
 
 extern sprite_item_t food;
 

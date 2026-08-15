@@ -1,9 +1,5 @@
 #include "required_box.h"
-
-#define BOX_X          (90)
-#define BOX_Y          (55)
-#define BOX_W          (14)
-#define BOX_H          (9)
+#include "training_action_config.h"
 
 required_box_t box;
 uint8_t count_correct;

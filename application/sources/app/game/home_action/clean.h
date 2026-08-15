@@ -2,6 +2,7 @@
 #define CLEAN_H
 
 #include "common.h"
+#include "home_action_config.h"
 
 extern sprite_item_t clean;
 

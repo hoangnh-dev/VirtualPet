@@ -1,10 +1,5 @@
 #include "food.h"
-#include "task_list.h"
-
-#define FOOD_X          (20)
-#define FOOD_Y          (34)
-#define FOOD_W          (21)
-#define FOOD_HE         (21)
+#include "home_action_config.h"
 
 sprite_item_t food;
 

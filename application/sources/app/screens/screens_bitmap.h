@@ -4,7 +4,6 @@
 #include "view_render.h"
 
 // scr_welcome
-extern const unsigned char PROGMEM bitmap_dolphin[];
 extern const unsigned char PROGMEM bitmap_egg_splash[];
 extern const unsigned char PROGMEM bitmap_egg_1[];
 extern const unsigned char PROGMEM bitmap_egg_2[];

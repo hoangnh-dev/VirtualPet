@@ -1,10 +1,5 @@
 #include "clean.h"
-#include "task_list.h"
-
-#define CLEAN_X          (0)
-#define CLEAN_Y          (16)
-#define CLEAN_W          (18)
-#define CLEAN_HE         (48)
+#include "home_action_config.h"
 
 sprite_item_t clean;
 
@@ -19,11 +14,11 @@ void clean_setup(){
 }
 
 void clean_update_bitmap(){
-    if(clean.current_frame.x >= 128){
+    if(clean.current_frame.x >= LCD_WIDTH){
         clean.visible = false;
         return;
     }
-    if (clean.current_frame.x == 80){
+    if (clean.current_frame.x == POOP_X){
         task_post_pure_msg(VP_GAME_POOP_ID, VP_GAME_POOP_CLEAN);
     }
     clean.current_frame.x += 10;
