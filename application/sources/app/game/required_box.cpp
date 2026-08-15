@@ -75,6 +75,11 @@ void box_update(){
 void time_update(){
     if(box.current_time > 0 ) box.current_time --;
     if(box.renew_time > 0 ) box.renew_time --;
+    if(box.current_time == 0){
+        box.visible = false;
+        box.count = 1;
+        task_post_pure_msg(AC_TASK_DISPLAY_ID, AC_DISPLAY_TRAIN_FINISH);
+    }
 }
 bool box_check(uint8_t check){
     return box.frame_index[count_correct] == check;

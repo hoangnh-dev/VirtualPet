@@ -1,6 +1,7 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#include "task_list.h"
 #include <stdint.h>
 /* ========================================================================== */
 /*                            1. UTILITY TYPES                                */

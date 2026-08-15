@@ -16,6 +16,7 @@ const uint8_t *const fire_bitmaps[2] = {
 
 void fire_setup(){
     for (uint8_t i = 0; i < MAX_FIRE; i++) {
+        fire[i].visible = false;
         fire[i].current_frame.x = FIRE_X;
         fire[i].current_frame.y = FIRE_Y;
         fire[i].current_frame.w = FIRE_W;

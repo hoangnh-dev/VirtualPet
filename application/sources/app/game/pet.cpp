@@ -198,6 +198,7 @@ void pet_sleep(){
 void pet_train(){
     pet.action = PET_ACTION_TRAIN;
     pet.animation_check = 0;
+    pet_update_bitmap();
 }
 void pet_finish(pet_finish_t reason){
     switch (reason) {
