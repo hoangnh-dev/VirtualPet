@@ -1,4 +1,7 @@
 # VirtualPet - Build on AK Embedded Base Kit
+<p align="center">
+  <img src="./boot/doc/assets/virtualpet_1200x600.png" width="100%">
+</p>
 ## Screenshot
 <table>
   <tr>
